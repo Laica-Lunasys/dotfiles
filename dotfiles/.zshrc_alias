@@ -1,0 +1,1 @@
+alias nconsole='tmux new-s -s Console'

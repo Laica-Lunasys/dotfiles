@@ -1,0 +1,31 @@
+# Titles
+set -g set-titles on
+set -g set-titles-string '#H: #W'
+
+set -g status-justify left 
+
+# Left line
+set -g status-left "#[fg=colour0 bg=colour33] #S "
+set -g status-left-length 15
+
+# Right line
+set -g status-right " #(uname -s) | #(hostname -s) #[fg=colour234 bg=colour240]  00% #[fg=colour234 bg=colour245]  %y/%m/%d %H:%M:%S "
+set -g status-right-length 70
+
+# Text Color
+set -g status-fg colour245
+set -g status-bg colour235
+
+# Position
+set -g status-position bottom
+
+# Window tab
+setw -g window-status-current-format "#[fg=colour234 bg=colour240] #I:#W#F "
+setw -g window-status-format " #I:#W#F "
+
+# Border Color
+set -g pane-border-fg white
+set -g pane-border-bg black
+set -g pane-active-border-bg white
+set -g pane-active-border-bg black
+

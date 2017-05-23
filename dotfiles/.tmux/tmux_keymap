@@ -1,0 +1,26 @@
+# Change prefix-key
+set -g prefix C-space
+
+# tmux control
+bind -n F3 previous-window
+bind -n F4 next-window
+bind -n F2 new-window
+bind -n F1 command-prompt -p ">"
+bind r confirm-before -p "[Reload] Are you sure? (y/n):" 'source-file ~/.tmux.conf; source-file ~/.tmux/tmux_design; source-file ~/.tmux/tmux_keymap; display-message "[Reload] Reload Complete!"'
+bind F1 source-file ~/.tmux/tmux_design
+bind F2 source-file ~/.tmux/tmux_design.blue
+
+# Mouse support
+#set -g mouse-select-pane on
+#set -g mouse-select-window on
+#set -g mouse-resize-pane on
+#set -g mode-mouse on
+#set -g mouse-utf8 off
+
+set -g mouse on
+#bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
+bind -n WheelDownPane select-pane -t= \; send-keys -M
+
+#bind -t vi-copy WheelUpPane halfpage-up
+#bind -t vi-copy WheelDownPane halfpage-down
