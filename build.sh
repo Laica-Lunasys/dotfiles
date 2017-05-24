@@ -8,7 +8,7 @@ EPREFIX="\e[1;31m!!!\e[00m"
 
 echo -e "$PREFIX Setup dotfiles..."
 for file in `ls -A ~/dotfiles/dotfiles`; do
-    ln -sfv ~/dotfiles/dotfiles/$file ~/$file
+    ln -sfv ~/dotfiles/dotfiles/$file ~/
 done
 
 echo -e "$PREFIX Setup zsh..."
