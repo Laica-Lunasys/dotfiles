@@ -64,12 +64,6 @@ zstyle ':completion:*' use-cache true
 #---------------------
 # Import settings
 #---------------------
-source $HOME/.zsh/color.zsh
-source $HOME/.zsh/alias.zsh
-
-source $HOME/.zsh/vcs.zsh
-source $HOME/.zsh/prompt.zsh
-
 OS="$($HOME/.zsh/check-os.zsh)"
 PROFILE_DIR="$HOME/.zsh/profile/$OS.zsh"
 if [ -e $PROFILE_DIR ]; then
@@ -79,3 +73,9 @@ fi
 if [ -e $HOME/.zsh_profile ]; then
     source $HOME/.zsh_profile
 fi
+
+source $HOME/.zsh/color.zsh
+source $HOME/.zsh/alias.zsh
+
+source $HOME/.zsh/vcs.zsh
+source $HOME/.zsh/prompt.zsh
