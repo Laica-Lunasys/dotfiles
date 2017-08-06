@@ -2,7 +2,6 @@
 \#*#
 *#
 .#*
-.*~
 *~
 .DS_Store
 *.sw[po]
@@ -15,12 +14,14 @@ Session.vim
 *.dvi
 *.aux
 *.elc
-dotfiles/.zshrc.local
-samples
 
-dotfiles/.vim/bundle/
-dotfiles/.vim/.netrwhist
-dotfiles/.vimrc_sample
+.zshrc.local
+.zsh/history/
+
+samples
+.vim/bundle/
+.vim/.netrwhist
+.vimrc_sample
 
 **/*_history
 **/fishd.*

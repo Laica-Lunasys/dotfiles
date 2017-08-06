@@ -1,1 +1,0 @@
-/home/laica/dotsync/dotfiles/.tmux
