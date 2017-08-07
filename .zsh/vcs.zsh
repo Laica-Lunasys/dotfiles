@@ -1,10 +1,10 @@
 ### VCS Info
 zstyle ':vcs_info:git:*' get-revision true
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr " | %F${fg[white]}!"
-zstyle ':vcs_info:git:*' unstagedstr " | %F${fg[white]}+"
-zstyle ':vcs_info:*' formats " ⌥ %b%u%a "
-zstyle ':vcs_info:*' actionformats "[%b|%a %r]b"
+zstyle ':vcs_info:git:*' unstagedstr "${Gray1} | %F${fg[white]}+%f"
+zstyle ':vcs_info:git:*' stagedstr "${Gray1} | %F${fg[white]}!%f"
+zstyle ':vcs_info:*' formats " ⌥ %b%u%c %f"
+zstyle ':vcs_info:*' actionformats " ⌥ %b%u%c%a %f"
 zstyle ':vcs_info:git+set-message:*' hooks \
                                      git-hook-begin \
                                      git-untracked \

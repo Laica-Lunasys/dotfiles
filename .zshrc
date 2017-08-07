@@ -18,7 +18,7 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 
 # Disable Auto Title (for tmux)
-DISABLE_AUTO_TITLE=true
+#DISABLE_AUTO_TITLE=true
 
 #----------------------
 # Bind Key
