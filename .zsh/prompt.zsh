@@ -27,12 +27,12 @@ else
     esac
 fi
 
-# Git/VCS Prompt(-> .zsh/vcs.zsh)
-VCSPROMPT=${Gray1}$'${vcs_info_msg_0_}%{\e[m%}'
-
 USER_HOST="${baseColor} %n@%m "
 DIR=${Gray0}$' %~ %{\e[m%}'
 USERMODE=${Gray1}$' %# %{\e[m%} '
+
+# Git/VCS Prompt(-> .zsh/vcs.zsh)
+VCSPROMPT=${Gray1}$'${vcs_info_msg_0_}${vcs_info_msg_1_}%{\e[m%}'
 
 PROMPT=${USER_HOST}${DIR}${VCSPROMPT}$'\n'${USERMODE}
 SPROMPT="%{$fg[white]%}%{$suggest%}(✿>╹‸╹%)? < にゃえ？もしかして %B%r%b %{$fg[white]%}のことかな? [そう!(y), 違う!(n),a,e]:${reset_color} "

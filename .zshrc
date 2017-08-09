@@ -3,8 +3,9 @@
 #--------------------------
 ## Autoload
 autoload -U colors; colors
-autoload -U compinit; compinit -u
-autoload -U vcs_info
+autoload -Uz compinit; compinit -u
+autoload -Uz vcs_info
+autoload -Uz add-zsh-hook
 
 # Init Antigen
 source $HOME/.zsh/antigen.zsh
@@ -18,7 +19,7 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 
 # Disable Auto Title (for tmux)
-#DISABLE_AUTO_TITLE=true
+DISABLE_AUTO_TITLE=true
 
 #----------------------
 # Bind Key
