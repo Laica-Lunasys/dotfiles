@@ -8,13 +8,13 @@
 if [[ "$PSCOLOR" != "" ]]; then
     export baseColor=$(echo \$$PSCOLOR)
 else
-    case "$($HOME/.zsh/check-os.zsh checkos)" in 
+    case "$($HOME/.misc/get-osdist.sh | sed -n 1P)" in 
         macos)
         export baseColor=$WhiteBase
         ;;
     esac
 
-    case "$($HOME/.zsh/check-os.zsh checkdist)" in 
+    case "$($HOME/.misc/get-osdist.sh | sed -n 2P)" in 
         centos) ## BLUE
         export baseColor=$BlueBase
         ;;

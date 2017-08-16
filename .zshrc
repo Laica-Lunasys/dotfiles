@@ -65,7 +65,7 @@ zstyle ':completion:*' use-cache true
 #---------------------
 # Import settings
 #---------------------
-OS="$($HOME/.zsh/check-os.zsh checkos)"
+OS="$($HOME/.misc/get-osdist.sh | sed -n 1P)"
 PROFILE_DIR="$HOME/.zsh/profile/$OS.zsh"
 if [ -e $PROFILE_DIR ]; then
     source $PROFILE_DIR

@@ -15,7 +15,7 @@ extract: ## Create symlink to home directory
 	@$(foreach val, $(DOTFILES), ln -snfv $(abspath $(val)) $(HOME)/$(val);)
 
 init: ## Setup environment settings
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/misc/init.sh
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/init.sh
 
 update: ## Fetch changes for this repository
 	git pull origin master
