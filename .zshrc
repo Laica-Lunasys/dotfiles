@@ -75,6 +75,11 @@ if [ -e $HOME/.zsh_profile ]; then
     source $HOME/.zsh_profile
 fi
 
+# PATH
+if [ -e $HOME/bin ]; then
+    export PATH=$HOME/bin:$PATH
+fi
+
 source $HOME/.zsh/color.zsh
 source $HOME/.zsh/alias.zsh
 
