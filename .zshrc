@@ -3,7 +3,7 @@
 #--------------------------
 ## Autoload
 autoload -U colors; colors
-autoload -Uz compinit; compinit -u
+autoload -Uz compinit; compinit -Du
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
