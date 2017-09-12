@@ -6,7 +6,7 @@
 # NOTE-> Prompt color can found at: .zsh/color.zsh
 
 if [[ "$PSCOLOR" != "" ]]; then
-    export baseColor=$(echo \$$PSCOLOR)
+    export baseColor=$PSCOLOR
 else
     case "$($HOME/.misc/get-osdist.sh | sed -n 1P)" in 
         macos)
