@@ -24,5 +24,9 @@ Plugin 'itchyny/lightline.vim'
 
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
+Plugin 'scrooloose/nerdtree'
+
+Plugin 'posva/vim-vue'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
