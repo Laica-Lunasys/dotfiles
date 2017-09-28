@@ -1,6 +1,7 @@
 set number
 set mouse=a
 set ttymouse=xterm2
+"set clipboard+=unnamed
 
 set tabstop=4
 set autoindent
