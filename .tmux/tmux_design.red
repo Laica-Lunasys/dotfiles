@@ -25,14 +25,13 @@ set -g status-position bottom
 # Window tab
 #setw -g window-status-format "#[fg=colour254 bg=colour240] #I#F/ #W "
 setw -g window-status-format "#[fg=colour247] #I / #[fg=colour255]#W#F "
-setw -g window-status-current-format "#[fg=colour117 bg=colour24] #I / #[fg=colour255]#W#F "
+setw -g window-status-current-format "#[fg=colour231 bg=colour161] #I / #[fg=colour255]#W#F "
 #setw -g window-status-format "#[fg=colour245 bg=colour235] #I:#W#F "
 
 # Border Color
-set -g pane-border-fg "colour234"
+set -g pane-border-fg white
 set -g pane-border-bg black
-
-set -g pane-active-border-fg "colour24"
+set -g pane-active-border-bg white
 set -g pane-active-border-bg black
 
 # Message
