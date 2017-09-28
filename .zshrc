@@ -7,8 +7,32 @@ autoload -Uz compinit; compinit -Du
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
+#---------------------
+# Import settings
+#---------------------
 # Init Antigen
 source $HOME/.zsh/antigen.zsh
+
+OS="$($HOME/.misc/get-osdist.sh | sed -n 1P)"
+PROFILE_DIR="$HOME/.zsh/profile/$OS.zsh"
+if [ -e $PROFILE_DIR ]; then
+    source $PROFILE_DIR
+fi
+
+if [ -e $HOME/.zsh_profile ]; then
+    source $HOME/.zsh_profile
+fi
+
+# PATH
+if [ -e $HOME/bin ]; then
+    export PATH=$HOME/bin:$PATH
+fi
+
+source $HOME/.zsh/color.zsh
+source $HOME/.zsh/alias.zsh
+
+source $HOME/.zsh/vcs.zsh
+source $HOME/.zsh/prompt.zsh
 
 #-----------------------
 # Misc Settings
@@ -61,27 +85,3 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' use-cache true
-
-#---------------------
-# Import settings
-#---------------------
-OS="$($HOME/.misc/get-osdist.sh | sed -n 1P)"
-PROFILE_DIR="$HOME/.zsh/profile/$OS.zsh"
-if [ -e $PROFILE_DIR ]; then
-    source $PROFILE_DIR
-fi
-
-if [ -e $HOME/.zsh_profile ]; then
-    source $HOME/.zsh_profile
-fi
-
-# PATH
-if [ -e $HOME/bin ]; then
-    export PATH=$HOME/bin:$PATH
-fi
-
-source $HOME/.zsh/color.zsh
-source $HOME/.zsh/alias.zsh
-
-source $HOME/.zsh/vcs.zsh
-source $HOME/.zsh/prompt.zsh

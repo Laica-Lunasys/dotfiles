@@ -1,3 +1,5 @@
+rm -f $HOME/.antigen/.zcompdump
+
 # antigen
 source $HOME/.antigen/antigen.zsh
 
