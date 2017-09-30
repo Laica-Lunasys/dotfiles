@@ -3,7 +3,6 @@
 #--------------------------
 ## Autoload
 autoload -U colors; colors
-autoload -Uz compinit; compinit -Du
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
@@ -62,7 +61,7 @@ bindkey "^[[4~" end-of-line
 bindkey '^[[Z' reverse-menu-complete
 
 #----------------
-# Tab Complete
+# Completion
 #----------------
 # Option
 setopt auto_param_slash
@@ -84,4 +83,4 @@ zstyle ':completion:*:options' description 'yes'
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*' use-cache true
+zstyle ':completion:*' use-cache false
