@@ -33,13 +33,15 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'fatih/vim-go'
 
-if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plugin 'Shougo/deoplete.nvim'
-endif
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'ervandew/supertab'
+
+"if has('nvim')
+"  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plugin 'Shougo/deoplete.nvim'
+"endif
+"Plugin 'roxma/nvim-yarp'
+"Plugin 'roxma/vim-hug-neovim-rpc'
 
 Plugin 'zchee/deoplete-go', { 'do': 'make' }
 
