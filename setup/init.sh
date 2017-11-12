@@ -9,6 +9,9 @@ echo -e "$PREFIX Setup zsh..."
 # zplug: [ ! -d ~/.zplug ] && mkdir -p ~/.zplug && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 [ ! -d ~/.antigen ] && mkdir -p ~/.antigen && curl -L git.io/antigen > ~/.antigen/antigen.zsh
 
+echo -e "$PREFIX Setup tpm..."
+[ ! -d ~/.tmux/plugins/tpm ] && mkdir -p ~/.tmux/plugins/tpm && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 echo -e "$PREFIX Setup vim Vundle..."
 [ ! -d ~/.vim/bundle ] && mkdir -p ~/.vim/bundle && git clone git://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 
