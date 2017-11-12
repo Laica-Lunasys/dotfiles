@@ -23,10 +23,6 @@ else
   Plugin 'roxma/vim-hug-neovim-rpc'
 endif
 
-"Plugin 'Shougo/deoplete.nvim'
-"Plugin 'roxma/nvim-yarp'
-"Plugin 'roxma/vim-hug-neovim-rpc'
-
 Plugin 'Shougo/unite.vim'
 Plugin 'ujihisa/unite-colorscheme'
 Plugin 'tomasr/molokai'

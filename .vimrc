@@ -1,13 +1,5 @@
 set number
-
-if has('nvim')
-    " Neovim specific commands
-    set mouse=a
-else
-    " Standard vim specific command
-    set mouse=a
-    set ttymouse=xterm2
-endif
+set mouse=a
 
 set clipboard+=unnamed
 nnoremap x "_x
@@ -28,8 +20,6 @@ syntax on
 
 " Setup Vundle
 filetype plugin indent on    " required
-
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 source ~/.vim/keymap.vim
 source ~/.vim/vundle.vim
