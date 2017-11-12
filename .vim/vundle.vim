@@ -15,14 +15,6 @@ Plugin 'git://git.wincent.com/command-t.git'
 
 "Plugin 'Shougo/neocomplete'
 
-if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
-endif
-
 Plugin 'Shougo/unite.vim'
 Plugin 'ujihisa/unite-colorscheme'
 Plugin 'tomasr/molokai'
@@ -40,6 +32,17 @@ Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'fatih/vim-go'
+
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+endif
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+
+Plugin 'zchee/deoplete-go', { 'do': 'make' }
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required

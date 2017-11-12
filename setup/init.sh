@@ -17,4 +17,5 @@ echo -e "$PREFIX Setup vim Vundle..."
 
 echo -e "$RPREFIX Executing: 'vim -c :PluginInstall'"
 vim -c ':PluginInstall' -c ':q' -c ':q'
+
 echo -e "$PREFIX vim / Vundle Ready."
