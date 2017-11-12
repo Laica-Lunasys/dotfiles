@@ -28,5 +28,9 @@ Plugin 'scrooloose/nerdtree'
 
 Plugin 'posva/vim-vue'
 
+Plugin 'Chiel92/vim-autoformat'
+
+Plugin 'fatih/vim-go'
+
 call vundle#end()            " required
 filetype plugin indent on    " required

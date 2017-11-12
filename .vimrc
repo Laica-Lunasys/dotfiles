@@ -18,6 +18,8 @@ syntax on
 " Setup Vundle
 filetype plugin indent on    " required
 
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
 source ~/.vim/vundle.vim
 source ~/.vim/settings.vim
 
