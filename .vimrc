@@ -1,7 +1,18 @@
 set number
-set mouse=a
-set ttymouse=xterm2
-"set clipboard+=unnamed
+
+if has('nvim')
+    " Neovim specific commands
+    set mouse=a
+else
+    " Standard vim specific command
+    set mouse=a
+    set ttymouse=xterm2
+endif
+
+set clipboard+=unnamed
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
 
 set tabstop=4
 set autoindent
@@ -20,11 +31,9 @@ filetype plugin indent on    " required
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
+source ~/.vim/keymap.vim
 source ~/.vim/vundle.vim
 source ~/.vim/settings.vim
-
-call deoplete#enable()
-let g:deoplete#enable_at_startup = 1
 
 " ColorScheme
 colorscheme molokai
