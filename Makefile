@@ -31,7 +31,9 @@ clean: ## Remove dotfiles
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DOTFILES), rm -rfv $(HOME)/$(val);)
 	@echo 'Removing Antigen...'
-	@rm -rfv $(HOME)/.antigen	
+	@rm -rfv $(HOME)/.antigen
+	@echo 'Removing vim bundles...'
+	@rm -rfv $(DOTPATH)/.vim/bundle
 
 reinstall: clean install ## Reinstall Dotfiles Environment
 	@exec $$SHELL

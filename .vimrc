@@ -23,5 +23,8 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 source ~/.vim/vundle.vim
 source ~/.vim/settings.vim
 
+call deoplete#enable()
+let g:deoplete#enable_at_startup = 1
+
 " ColorScheme
 colorscheme molokai

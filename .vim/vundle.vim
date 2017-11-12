@@ -13,7 +13,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
 
-Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neocomplete'
+
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
 
 Plugin 'Shougo/unite.vim'
 Plugin 'ujihisa/unite-colorscheme'
@@ -30,6 +34,7 @@ Plugin 'posva/vim-vue'
 
 Plugin 'Chiel92/vim-autoformat'
 
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'fatih/vim-go'
 
 call vundle#end()            " required
