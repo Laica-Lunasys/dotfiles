@@ -27,6 +27,8 @@ if [ -e $HOME/bin ]; then
     export PATH=$HOME/bin:$PATH
 fi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 source $HOME/.zsh/color.zsh
 source $HOME/.zsh/alias.zsh
 
@@ -84,3 +86,5 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' use-cache false
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
