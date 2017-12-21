@@ -28,6 +28,8 @@ Plugin 'scrooloose/nerdtree'
 
 Plugin 'posva/vim-vue'
 
+Plugin 'andrewstuart/vim-kubernetes'
+
 Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
@@ -48,3 +50,11 @@ Plugin 'zchee/deoplete-go', { 'do': 'make' }
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+
+" ------------------------------------
+" colorscheme
+" ------------------------------------
+syntax on
+colorscheme molokai
+highlight Normal ctermbg=none

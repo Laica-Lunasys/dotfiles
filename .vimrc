@@ -24,6 +24,3 @@ filetype plugin indent on    " required
 source ~/.vim/keymap.vim
 source ~/.vim/vundle.vim
 source ~/.vim/settings.vim
-
-" ColorScheme
-colorscheme molokai
