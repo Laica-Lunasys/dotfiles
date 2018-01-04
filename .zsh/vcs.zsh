@@ -5,7 +5,7 @@ zstyle ':vcs_info:git:*' get-revision true
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "+" # %c
 zstyle ':vcs_info:git:*' unstagedstr "-" # %u
-zstyle ':vcs_info:git:*' formats ' ⌥ %b %u%c' '%m '
+zstyle ':vcs_info:git:*' formats '%b %u%c' '%m '
 zstyle ':vcs_info:git:*' actionformats '(%s) %b %u%c%m' '<!%a>'
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git+set-message:*' hooks \

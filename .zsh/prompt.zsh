@@ -27,12 +27,29 @@ else
     esac
 fi
 
-USER_HOST="${baseColor} %n@%m "
-DIR=${Gray0}$' %~ %{\e[m%}'
-USERMODE=${Gray1}$' %# %{\e[m%} '
+PROMPT=""
+RESET=$reset_color
 
-# Git/VCS Prompt(-> .zsh/vcs.zsh)
-VCSPROMPT=${Gray1}$'${vcs_info_msg_0_}${vcs_info_msg_1_}%{\e[m%}'
+# user@hostname
+PROMPT+=$'%{\e[38;5;255;48;5;236m%} %n@%m '$'%{\e[38;5;236m%}'
+#%{\e[38;5;255m%}
 
-PROMPT=${USER_HOST}${DIR}${VCSPROMPT}$'\n'${USERMODE}
+# directory
+PROMPT+=$'%{\e[48;5;39m%}'"▍"$'%{\e[38;5;0m%} %~ '$'%{\e[38;5;39m%}'
+
+PROMPT+="\$(
+if [[ -n \"\${vcs_info_msg_0_}\" ]]; then
+    echo $'%{\e[48;5;148m%}'"▍"\"%{\e[38;5;0m%} ⤭ \${vcs_info_msg_0_}\${vcs_info_msg_1_}\"$'%{\e[m\e[38;5;148m%}'"▍"
+  else 
+    echo $'%{\e[m%}%{\e[38;5;39m%}'"▍"
+fi)"
+
+# PROMPT+=$'%{\e[48;5;148m%}'"▍"
+# PROMPT+=$'%{\e[38;5;0m%}${vcs_info_msg_0_}${vcs_info_msg_1_}%}'
+# PROMPT+=$'%{\e[m\e[38;5;148m%}'"▍"
+
+# https://unicode-table.com/en/#25E2
+PROMPT+=$'\n'
+PROMPT+=$'%{\e[m%}%{\e[38;5;255m%}'" ❯ "$'%{\e[m%} '
+
 SPROMPT="%{$fg[white]%}%{$suggest%}(✿>╹‸╹%)? < にゃえ？もしかして %B%r%b %{$fg[white]%}のことかな? [そう!(y), 違う!(n),a,e]:${reset_color} "
