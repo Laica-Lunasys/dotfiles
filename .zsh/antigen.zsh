@@ -13,4 +13,6 @@ antigen bundle docker
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
 
+antigen bundle zsh-users/zsh-autosuggestions
+
 antigen apply
