@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 12.5,
     
     // font family with optional fallbacks
-    fontFamily: 'Menlo',
+    //fontFamily: 'Monoscape',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(248,28,229,0.8)',
@@ -116,7 +116,27 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [],
+  plugins: [
+      'hyper-material-theme'
+  ],
+
+    MaterialTheme: {
+        // Set the theme variant,
+        // OPTIONS: 'Darker', 'Palenight', ''
+        theme: '',
+
+        // [Optional] Set the rgba() app background opacity, useful when enableVibrance is true
+        // OPTIONS: From 0.1 to 1
+        backgroundOpacity: '1',
+
+        // [Optional] Set the accent color for the current active tab
+        accentColor: '#64FFDA',
+
+        // [Optional] Mac Only. Need restart. Enable the vibrance and blurred background
+        // OPTIONS: 'dark', 'ultra-dark', 'bright'
+        // NOTE: The backgroundOpacity should be between 0.1 and 0.9 to see the effect.
+        vibrancy: 'dark'
+    },
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
