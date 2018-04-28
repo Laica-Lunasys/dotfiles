@@ -17,6 +17,21 @@ extract: ## Create symlink to home directory
 init: ## Setup environment settings
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/init.sh
 
+#### Ubuntu Setup
+ubuntu: ## Setup Ubuntu Environment
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/ubuntu/00_remove.sh
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/ubuntu/01_install.sh
+
+nvidia: ## Setup Ubuntu NVIDIA Driver
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/ubuntu/01_install-nvidia.sh
+
+docker: ## Setup Docker
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/ubuntu/01_install-nvidia.sh
+gnome: ## Setup GNOME Environment
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/gnome/00_setup.sh
+
+#### ===
+
 update: ## Fetch changes for this repository
 	git pull origin master
 	git submodule init
@@ -25,7 +40,7 @@ update: ## Fetch changes for this repository
 
 install: update extract init ## Run make update, extract, init
 	@echo '==> Starting Shell...'
-	@exec $$SHELL
+	@exec $$SHELL -c "echo 'pong' && exit 0"
 
 clean: ## Remove dotfiles
 	@echo 'Remove dot files in your home directory...'
@@ -36,7 +51,7 @@ clean: ## Remove dotfiles
 	@rm -rfv $(DOTPATH)/.vim/bundle
 
 reinstall: clean install ## Reinstall Dotfiles Environment
-	@exec $$SHELL
+	@exec $$SHELL -c "echo 'pong' && exit 0"
 
 help: ## Show help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
