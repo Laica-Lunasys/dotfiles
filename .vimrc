@@ -1,7 +1,7 @@
 set number
 set mouse=a
 
-set clipboard+=unnamed
+set clipboard+=unnamed,unnamedplus,autoselect
 nnoremap x "_x
 nnoremap d "_d
 nnoremap D "_D

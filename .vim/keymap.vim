@@ -1,5 +1,5 @@
 " Copy
-vmap <C-c> y
+vmap <C-c> "+y
 
 " Cut
 vmap <C-x> x
