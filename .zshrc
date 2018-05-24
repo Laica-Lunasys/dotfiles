@@ -77,6 +77,8 @@ setopt magic_equal_subst
 setopt complete_in_word      
 setopt always_last_prompt
 
+setopt nonomatch
+
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:default' menu select=2
