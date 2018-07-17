@@ -18,6 +18,7 @@ Session.vim
 .zsh_profile
 .zshrc.local
 .zsh/history/
+*.zwc
 
 samples
 .vim/bundle/
