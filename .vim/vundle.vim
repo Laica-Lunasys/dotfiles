@@ -35,18 +35,15 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'fatih/vim-go'
 
-Plugin 'ervandew/supertab'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
 
-"if has('nvim')
-"  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plugin 'Shougo/deoplete.nvim'
-"endif
-"Plugin 'roxma/nvim-yarp'
-"Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'tpope/vim-endwise'
 
-Plugin 'zchee/deoplete-go', { 'do': 'make' }
+" Plugin 'ervandew/supertab'
+Plugin 'maralla/completor.vim'
 
+Plugin 'haya14busa/is.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
