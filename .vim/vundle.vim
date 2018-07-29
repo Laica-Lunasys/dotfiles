@@ -45,6 +45,12 @@ Plugin 'maralla/completor.vim'
 
 Plugin 'haya14busa/is.vim'
 
+" Syntax Highlight
+Plugin 'w0rp/ale.git'
+
+" Auto Close
+Plugin 'jiangmiao/auto-pairs'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
