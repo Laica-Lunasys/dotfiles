@@ -48,6 +48,9 @@ Plugin 'haya14busa/is.vim'
 " Syntax Highlight
 Plugin 'w0rp/ale.git'
 
+" Auto Fix Trailing White-Space
+Plugin 'bronson/vim-trailing-whitespace'
+
 " Auto Close
 Plugin 'jiangmiao/auto-pairs'
 
