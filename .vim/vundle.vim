@@ -38,6 +38,9 @@ Plugin 'fatih/vim-go'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 
+" toml
+Plugin 'cespare/vim-toml'
+
 Plugin 'tpope/vim-endwise'
 
 " Plugin 'ervandew/supertab'
