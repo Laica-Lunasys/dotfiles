@@ -16,6 +16,7 @@ set laststatus=2
 set backspace=indent,eol,start
 
 set ttimeoutlen=10
+set encoding=utf-8
 
 " Enable Syntax Highlight
 syntax on
