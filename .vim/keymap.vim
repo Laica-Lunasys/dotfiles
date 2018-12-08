@@ -1,8 +1,11 @@
 let mapleader = "\<Space>"
 
 " Clipboard
-vnoremap y "+y
+nnoremap y "+y
 nnoremap Y "+Y
+vnoremap y "+y
+vnoremap Y "+Y
+
 nnoremap p "+p
 nnoremap P "+P
 vnoremap p "+p
