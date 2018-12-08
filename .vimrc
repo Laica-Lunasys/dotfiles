@@ -1,10 +1,7 @@
 set number
 set mouse=a
 
-set clipboard+=unnamed,unnamedplus,autoselect
-nnoremap x "_x
-nnoremap d "_d
-nnoremap D "_D
+set clipboard+=unnamedplus,autoselect
 
 set tabstop=4
 set autoindent

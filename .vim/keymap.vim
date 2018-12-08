@@ -1,3 +1,13 @@
+let mapleader = "\<Space>"
+
+" Clipboard
+vnoremap y "+y
+nnoremap Y "+Y
+nnoremap p "+p
+nnoremap P "+P
+vnoremap p "+p
+vnoremap P "+P
+
 " Copy
 vmap <C-c> "+y
 
