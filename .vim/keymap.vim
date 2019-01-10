@@ -11,6 +11,9 @@ nnoremap P "+P
 vnoremap p "+p
 vnoremap P "+P
 
+nnoremap c "+c
+vnoremap c "+c
+
 " Copy
 vmap <C-c> "+y
 
