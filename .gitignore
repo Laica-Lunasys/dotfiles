@@ -21,6 +21,8 @@ Session.vim
 *.zwc
 
 samples
+.vim/autoload/plug.vim
+.vim/plugged/
 .vim/bundle/
 .vim/.netrwhist
 .vimrc_sample
