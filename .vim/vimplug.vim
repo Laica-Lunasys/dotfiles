@@ -55,5 +55,9 @@ call plug#end()
 " colorscheme
 " ------------------------------------
 syntax on
-colorscheme molokai
+
+if filereadable(expand("$HOME/.vim/plugged/molokai/colors/molokai.vim"))
+    colorscheme molokai
+endif
+
 highlight Normal ctermbg=none
