@@ -12,10 +12,17 @@ echo -e "$PREFIX Setup zsh..."
 echo -e "$PREFIX Setup tpm..."
 [ ! -d ~/.tmux/plugins/tpm ] && mkdir -p ~/.tmux/plugins/tpm && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-echo -e "$PREFIX Setup vim Vundle..."
-[ ! -d ~/.vim/bundle ] && mkdir -p ~/.vim/bundle && git clone git://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+echo -e "$PREFIX Setup vim-plug..."
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-echo -e "$RPREFIX Executing: 'vim -c :PluginInstall'"
-vim -c ':PluginInstall' -c ':q' -c ':q'
+echo -e "$RPREFIX Executing: 'vim -c :PlugInstall'"
+vim -c ':PlugInstall' -c ':q' -c ':q'
+
+#echo -e "$PREFIX Setup vim Vundle..."
+#[ ! -d ~/.vim/bundle ] && mkdir -p ~/.vim/bundle && git clone git://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+
+#echo -e "$RPREFIX Executing: 'vim -c :PluginInstall'"
+#vim -c ':PluginInstall' -c ':q' -c ':q'
 
 echo -e "$PREFIX vim / Vundle Ready."
