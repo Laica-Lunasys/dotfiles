@@ -49,6 +49,7 @@ clean: ## Remove dotfiles
 	@rm -rfv $(HOME)/.antigen
 	@echo 'Removing vim bundles...'
 	@rm -rfv $(DOTPATH)/.vim/bundle
+	@rm -rfv $(DOTPATH)/.vim/plugged
 
 reinstall: clean install ## Reinstall Dotfiles Environment
 	@exec $$SHELL -c "echo 'pong' && exit 0"
