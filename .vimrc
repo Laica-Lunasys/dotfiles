@@ -15,6 +15,10 @@ set backspace=indent,eol,start
 set ttimeoutlen=10
 set encoding=utf-8
 
+" Enable Search highlight
+set hlsearch
+set incsearch
+
 " Setup Vundle
 filetype plugin indent on    " required
 
