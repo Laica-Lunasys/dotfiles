@@ -39,8 +39,6 @@ update: ## Fetch changes for this repository
 	git submodule foreach git pull origin master
 
 install: update extract init ## Run make update, extract, init
-	@echo '==> Starting Shell...'
-	@exec $$SHELL -c "echo 'pong' && exit 0"
 
 clean: ## Remove dotfiles
 	@echo 'Remove dot files in your home directory...'
