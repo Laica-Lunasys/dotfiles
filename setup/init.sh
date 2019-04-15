@@ -5,16 +5,16 @@ _notify_prefix=$(printf "\e[1;32m==>\e[m")
 _error_prefix=$(printf "\e[1;31m!!\e[m")
 #---------------------------------------
 
-echo "$_info_prefix Setup zsh..."
+echo "$_info_prefix Setup fzf..."
+[ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --no-bash --no-zsh --no-fish
+
+echo "$_info_prefix Setup zplug..."
 #[ ! -d ~/.antigen ] && mkdir -p ~/.antigen && curl -L git.io/antigen > ~/.antigen/antigen.zsh
 #[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
 if [ ! -d ~/.zplug ]; then
     git clone https://github.com/zplug/zplug ~/.zplug
     zsh -c 'source ~/.zshrc && exit 0'
 fi
-
-echo "$_info_prefix Setup fzf..."
-[ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --no-bash --no-zsh --no-fish
 
 echo "$_info_prefix Setup tpm..."
 [ ! -d ~/.tmux/plugins/tpm ] && mkdir -p ~/.tmux/plugins/tpm && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
