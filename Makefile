@@ -45,6 +45,8 @@ install: update extract init ## Run make update, extract, init
 clean: ## Remove dotfiles
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DOTFILES), rm -rfv $(HOME)/$(val);)
+	@echo 'Removing fzf...'
+	@rm -rfv $(HOME)/.fzf
 	@echo 'Removing Antigen...'
 	@rm -rfv $(HOME)/.antigen
 	@echo 'Removing vim bundles...'
