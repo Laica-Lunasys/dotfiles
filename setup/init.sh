@@ -7,7 +7,8 @@ _error_prefix=$(printf "\e[1;31m!!\e[m")
 
 echo "$_info_prefix Setup zsh..."
 #[ ! -d ~/.antigen ] && mkdir -p ~/.antigen && curl -L git.io/antigen > ~/.antigen/antigen.zsh
-[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
+#[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
+[ ! -d ~/.zplug ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 echo "$_info_prefix Setup fzf..."
 [ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --no-bash --no-zsh --no-fish

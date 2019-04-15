@@ -1,5 +1,3 @@
-export "reset_color"="%{$reset_color%}"
-
 # User status
 export "root_symbol"='#'
 export "user_symbol"='$'
