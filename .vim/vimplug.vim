@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'git://git.wincent.com/command-t.git'
 
 "Plug 'Shougo/neocomplete'
@@ -48,6 +49,10 @@ Plug 'bronson/vim-trailing-whitespace'
 
 " Auto Close
 Plug 'jiangmiao/auto-pairs'
+
+" Comment
+Plug 'tpope/vim-commentary'
+
 
 call plug#end()
 
