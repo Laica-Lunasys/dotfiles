@@ -1,3 +1,5 @@
+setopt prompt_subst
+
 ### VCS Info
 zstyle ':vcs_info:*' enable git svn hg bzr
 
@@ -15,6 +17,7 @@ zstyle ':vcs_info:git+set-message:*' hooks \
                                      git-nomerge-branch \
                                      git-stash-count
 precmd () {
+    vcs_info
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"

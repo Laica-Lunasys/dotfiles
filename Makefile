@@ -49,6 +49,8 @@ clean: ## Remove dotfiles
 	@rm -rfv $(HOME)/.fzf
 	@echo 'Removing Antigen...'
 	@rm -rfv $(HOME)/.antigen
+	@echo 'Removing zplug...'
+	@rm -rfv $(HOME)/.zplug
 	@echo 'Removing vim bundles...'
 	@rm -rfv $(DOTPATH)/.vim/bundle
 	@rm -rfv $(DOTPATH)/.vim/plugged

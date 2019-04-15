@@ -9,8 +9,8 @@ autoload -Uz add-zsh-hook
 #---------------------
 # Import settings
 #---------------------
-# Init Antigen
-source $HOME/.zsh/antigen.zsh
+# Init zplug
+source $HOME/.zsh/zplug.zsh
 
 OS="$($HOME/.misc/get-osdist.sh | sed -n 1P)"
 PROFILE_DIR="$HOME/.zsh/profile/$OS.zsh"
