@@ -3,54 +3,39 @@
 # a(48=bg, 38=fg) b(static) c(colornum)
 # 148m = green
 
-# NOTE-> Prompt color can found at: .zsh/color.zsh
+_bg_wht0=$'%{\e[48;5;255m%}'
+_fg_wht0=$'%{\e[38;5;255m%}'
 
-if [[ "$PSCOLOR" != "" ]]; then
-    export baseColor=$PSCOLOR
-else
-    case "$($HOME/.misc/get-osdist.sh | sed -n 1P)" in
-        macos)
-        export baseColor=$WhiteBase
-        ;;
-    esac
+_bg_wht1=$'%{\e[48;5;253m%}'
+_fg_wht1=$'%{\e[38;5;253m%}'
 
-    case "$($HOME/.misc/get-osdist.sh | sed -n 2P)" in
-        centos) ## BLUE
-        export baseColor=$BlueBase
-        ;;
-        ubuntu) ## ORANGE
-        export baseColor=$OrangeBase
-        ;;
-        debian) ## RED
-        export baseColor=$RedBase
-        ;;
-    esac
-fi
+_bg_wht2=$'%{\e[48;5;251m%}'
+_fg_wht3=$'%{\e[38;5;251m%}'
 
-PROMPT=""
-RESET=$reset_color
+_bg_blk0=$'%{\e[48;5;235m%}'
+_fg_blk0=$'%{\e[38;5;235m%}'
 
-# user@hostname
-PROMPT+=$'%{\e[38;5;255;48;5;236m%}  %n@%m  '$'%{\e[38;5;236m%}'
-#%{\e[38;5;255m%}
+_bg_blk0h=$'%{\e[48;5;237m%}'
 
-# directory
-PROMPT+=$'%{\e[48;5;39m%}'"▍"$'%{\e[38;5;0m%}  %~  '$'%{\e[38;5;39m%}'
+_bg_blk1=$'%{\e[48;5;239m%}'
+_fg_blk1=$'%{\e[38;5;239m%}'
 
-PROMPT+="\$(
+_bg_blk1h=$'%{\e[48;5;240m%}'
+
+_bg_blk2=$'%{\e[48;5;242m%}'
+_fg_blk2=$'%{\e[38;5;242m%}'
+
+_blue_prompt=$'%{\e[38;5;39m%}'
+_white_prompt=$'%{\e[38;5;255m%}'
+
+_vcs_format="\$(
 if [[ -n \"\${vcs_info_msg_0_}\" ]]; then
-    echo $'%{\e[48;5;148m%}'"▍"\"%{\e[38;5;0m%} ⤭  \${vcs_info_msg_0_}\${vcs_info_msg_1_} \"$'%{\e[m\e[38;5;148m%}'
-  else
-    echo $'%{\e[m%}%{\e[38;5;39m%}'
+    echo \"\${_bg_blk1h} \${_bg_blk2}\${_fg_wht2}  ᔑ \${vcs_info_msg_0_}\${vcs_info_msg_1_} \"
+else
+    echo ''
 fi)"
 
-PROMPT+="${reset_color}"
-# PROMPT+=$'%{\e[48;5;148m%}'"▍"
-# PROMPT+=$'%{\e[38;5;0m%}${vcs_info_msg_0_}${vcs_info_msg_1_}%}'
-# PROMPT+=$'%{\e[m\e[38;5;148m%}'"▍"
-
-# https://unicode-table.com/en/#25E2
-PROMPT+=$'\n'
-PROMPT+=$'%{\e[m%}%{\e[38;5;255m%}'" ❯ "$'%{\e[m%} '
+PROMPT="${_bg_blk0}${_fg_wht0}  %n@%m  ${_bg_blk0h} ${_bg_blk1}${_fg_wht1}  %~  ${_vcs_format}${reset_color}"$'\n'
+PROMPT+="${_white_prompt} ❯ ${reset_color}"
 
 SPROMPT="%{$fg[white]%}%{$suggest%}(✿>╹‸╹%)? < にゃえ？もしかして %B%r%b %{$fg[white]%}のことかな? [そう!(y), 違う!(n),a,e]:${reset_color} "
