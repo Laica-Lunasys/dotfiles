@@ -10,10 +10,7 @@ zplug "robbyrussell/oh-my-zsh", use:lib/termsupport.zsh, as:plugin
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+    echo; zplug install
 fi
 
 # Then, source plugins and add commands to $PATH
