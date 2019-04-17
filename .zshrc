@@ -63,6 +63,9 @@ bindkey "^[[4~" end-of-line
 
 bindkey '^[[Z' reverse-menu-complete
 
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
 #----------------
 # Completion
 #----------------
