@@ -1,7 +1,7 @@
-#rm -f $HOME/.antigen/.zcompdump
+rm -f $HOME/.antigen/.zcompdump
 
 # antigen
-source $HOME/.antigen/antigen.zsh
+source ~/.antigen/antigen.zsh
 
 # Load oh-my-zsh
 antigen use oh-my-zsh
@@ -12,7 +12,7 @@ antigen bundle docker
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
-
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
 
 antigen apply
