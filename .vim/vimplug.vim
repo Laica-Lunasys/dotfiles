@@ -29,8 +29,6 @@ Plug 'fatih/vim-go'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 
-Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
-
 " toml
 Plug 'cespare/vim-toml'
 
