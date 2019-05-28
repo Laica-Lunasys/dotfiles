@@ -32,6 +32,9 @@ Plug 'tpope/vim-rails'
 " toml
 Plug 'cespare/vim-toml'
 
+" tf
+Plug 'hashivim/vim-terraform'
+
 Plug 'tpope/vim-endwise'
 
 " Plug 'ervandew/supertab'
