@@ -37,6 +37,9 @@ Plug 'hashivim/vim-terraform'
 
 Plug 'tpope/vim-endwise'
 
+" html
+Plug 'alvan/vim-closetag'
+
 " Plug 'ervandew/supertab'
 Plug 'maralla/completor.vim'
 
