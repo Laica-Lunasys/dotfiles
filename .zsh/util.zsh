@@ -5,7 +5,7 @@ mvdups() {
 }
 
 mvmov() {
-    IFS=$'\n' && for v in $(find . -maxdepth 1 -type f -iname '*.mp4' -o -type f -iname '*.flv'); do mkdir -p ./_MOV && mv -v $v ./_MOV; done
+    IFS=$'\n' && for v in $(find . -maxdepth 1 -type f -iname '*.mp4' -o -type f -iname '*.flv' -o -type f -iname '*.webm'); do mkdir -p ./_MOV && mv -v $v ./_MOV; done
 }
 
 mvimg() {
