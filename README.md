@@ -16,6 +16,7 @@ docker pull quay.io/lunasys/dotfiles
 ### Usage
 ```bash
 docker run --rm --name luna-dotfiles \
+    -e TZ=Asia/Tokyo \
     -v $HOME/.ssh:/home/relias/.ssh \
     -it lunasys/dotfiles
 ```
