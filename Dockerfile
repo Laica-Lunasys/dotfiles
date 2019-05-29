@@ -12,12 +12,13 @@ RUN apt-get update -qq && \
     useradd ${USERNAME} -m -u 1000 -G sudo -s /bin/zsh && \
     usermod -aG sudo ${USERNAME}
 
-USER ${USERNAME}
+COPY . /home/${USERNAME}/dotfiles
+RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/dotfiles
 
+USER ${USERNAME}
 WORKDIR /home/${USERNAME}
-RUN cd /home/${USERNAME} && \
-    git clone https://github.com/Laica-Lunasys/dotfiles.git && \
-    cd dotfiles && \
+
+RUN cd /home/${USERNAME}/dotfiles && \
     make install
 
 CMD ["/bin/zsh"]
