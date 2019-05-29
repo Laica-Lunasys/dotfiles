@@ -9,8 +9,7 @@ RUN apt-get update -qq && \
     apt-get clean && \
     busybox --install && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    chsh -s /bin/zsh && \
-    useradd ${USERNAME} -m -u 1000 -G sudo && \
+    useradd ${USERNAME} -m -u 1000 -G sudo -s /bin/zsh && \
     usermod -aG sudo ${USERNAME}
 
 USER ${USERNAME}
