@@ -9,6 +9,9 @@ dotfiles
 ```bash
 docker pull lunasys/dotfiles
 ```
+```bash
+docker pull quay.io/lunasys/dotfiles
+```
 
 ### Usage
 ```bash
