@@ -1,1 +1,2 @@
-image: lunasys/dotfiles
+image:
+  file: Dockerfile
