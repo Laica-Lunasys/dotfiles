@@ -31,14 +31,7 @@ gnome: ## Setup GNOME Environment
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/gnome/00_setup.sh
 
 #### ===
-
-update: ## Fetch changes for this repository
-	git pull origin master
-	git submodule init
-	git submodule update
-	git submodule foreach git pull origin master
-
-install: update extract init ## Run make update, extract, init
+install: extract init ## Run make extract, init
 
 clean: ## Remove dotfiles
 	@echo 'Remove dot files in your home directory...'
