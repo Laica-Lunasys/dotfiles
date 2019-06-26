@@ -1,7 +1,12 @@
+source ~/.vim/keymap.vim
+"source ~/.vim/vundle.vim
+source ~/.vim/vimplug.vim
+source ~/.vim/settings.vim
+
 set number
 set mouse=a
 
-set clipboard+=unnamed,unnamedplus,autoselect
+set clipboard=unnamedplus,autoselect
 
 set tabstop=4
 set autoindent
@@ -35,8 +40,3 @@ set incsearch
 
 " Setup Vundle
 filetype plugin indent on    " required
-
-source ~/.vim/keymap.vim
-"source ~/.vim/vundle.vim
-source ~/.vim/vimplug.vim
-source ~/.vim/settings.vim
