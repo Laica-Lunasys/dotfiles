@@ -1,7 +1,7 @@
 set number
 set mouse=a
 
-set clipboard+=unnamedplus,autoselect
+set clipboard+=unnamed,unnamedplus,autoselect
 
 set tabstop=4
 set autoindent
