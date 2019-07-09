@@ -34,6 +34,10 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+augroup Vimrc
+  autocmd!
+  autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
 
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx'] }
 
@@ -50,8 +54,18 @@ Plug 'tpope/vim-endwise'
 " html
 Plug 'alvan/vim-closetag'
 
+" lsp
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/async.vim'
+
 " Plug 'ervandew/supertab'
 Plug 'maralla/completor.vim'
+" Plug 'Valloric/YouCompleteMe'
+let g:ycm_global_ycm_extra_conf = '${HOME}/.ycm_extra_conf.py'
+let g:ycm_auto_trigger = 1
+let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_autoclose_preview_window_after_insertion = 1
+set splitbelow
 
 Plug 'haya14busa/is.vim'
 
