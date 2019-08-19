@@ -6,7 +6,7 @@ ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND nointeractive
 
 RUN apt-get update -qq && \
-    apt-get install -y busybox git tmux vim zsh make nano curl wget sudo tzdata && \
+    apt-get install -y busybox git tmux vim python3-neovim zsh make nano curl wget sudo tzdata && \
     apt-get clean && \
     busybox --install && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
