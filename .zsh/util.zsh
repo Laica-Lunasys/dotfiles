@@ -25,7 +25,7 @@ sortcpy() {
 }
 
 sortcpysimple() {
-    IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%H' | grep -v / | tail -n +2 | sort -n -k 7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do mkdir -p ./_SORTED && echo ":: Writing $v" ; cat $v > ./_SORTED/$v ; done
+    IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%H' | grep -v / | tail -n +2 | sort -k 7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do mkdir -p ./_SORTED && echo ":: Writing $v" ; cat $v > ./_SORTED/$v ; done
 }
 
 sortcpytime() {
