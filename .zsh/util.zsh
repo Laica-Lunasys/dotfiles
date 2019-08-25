@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 mvdups() {
+    IFS=$'\n'
     for x in $(find . -mindepth 1 -maxdepth 1 | grep '([0-9])'); do
         mkdir -p ./_DUPS
         orig=$(echo $x | sed -re "s/\ \([0-9]\)\././g")
