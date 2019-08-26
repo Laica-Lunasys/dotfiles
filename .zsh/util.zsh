@@ -1,5 +1,29 @@
 #!/bin/zsh
 
+finddups() {
+    if [ "$1" = "" ]; then
+        echo "Usage: finddups <fileName>"
+        return
+    fi
+
+    fname=$1
+    if [ ! -e "$fname" ]; then
+        echo "file not found: $fname"
+        return
+    fi
+
+    # get hash
+    orig_hash=$(cat ./$fname | sha256sum)
+
+    IFS=$'\n'
+    for f in $(find . -mindepth 1 -maxdepth 1 -type f); do
+        file_hash=$(cat ./$f | sha256sum)
+        if [ "$f" != "$fname" ] && [ "$orig_hash" = "$file_hash" ]; then
+            echo "$f"
+        fi
+    done
+}
+
 mvdups() {
     IFS=$'\n'
     for x in $(find . -mindepth 1 -maxdepth 1 | grep '([0-9])'); do
