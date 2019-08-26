@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-finddups() {
+findsame() {
     if [ "$1" = "" ]; then
-        echo "Usage: finddups <fileName>"
+        echo "Usage: findsame <fileName>"
         return
     fi
 
@@ -13,13 +13,46 @@ finddups() {
     fi
 
     # get hash
-    orig_hash=$(cat ./$fname | sha256sum)
+    orig_hash=$(cat ./$fname | md5sum)
 
     IFS=$'\n'
     for f in $(find . -mindepth 1 -maxdepth 1 -type f); do
-        file_hash=$(cat ./$f | sha256sum)
+        file_hash=$(cat ./$f | md5sum)
         if [ "$f" != "$fname" ] && [ "$orig_hash" = "$file_hash" ]; then
             echo "$f"
+        fi
+    done
+}
+
+finddups() {
+    # get hash
+    declare -A _dups_hash
+
+    fileLen="$(find . -mindepth 1 -maxdepth 1 -type f | wc -l)"
+
+    cnt=0
+    IFS=$'\n'
+    for f in $(find . -mindepth 1 -maxdepth 1 -type f); do
+        cnt=$(expr $cnt + 1)
+        echo "$cnt/$fileLen\t$f"
+        file_hash=$(cat $f | md5sum | tr -d ' -')
+        if [ "$_dups_hash[$file_hash]" = "" ]; then
+            _dups_hash[$file_hash]="$f"
+        else
+            _dups_hash[$file_hash]="$_dups_hash[$file_hash]\\$f"
+        fi
+    done
+
+    unset IFS
+    for k in $(echo ${(k)_dups_hash[@]}); do
+        if [ "$(echo $_dups_hash[$k] | grep '\\')" ]; then
+            echo ""
+            echo "$k:"
+            IFS=$'\\'
+            for f in $(echo $_dups_hash[$k]); do
+                echo "$f"
+            done
+            unset IFS
         fi
     done
 }
