@@ -6,7 +6,7 @@ _error_prefix=$(printf "\e[1;31m!!\e[m")
 #---------------------------------------
 
 echo "$_info_prefix Setup fzf..."
-[ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --no-bash --no-zsh --no-fish
+[ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --no-bash --no-fish
 
 echo "$_info_prefix Setup Antigen..."
 if [ ! -d ~/.antigen ]; then
