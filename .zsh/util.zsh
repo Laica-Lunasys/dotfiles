@@ -61,7 +61,7 @@ mvdups() {
     IFS=$'\n'
     for x in $(find . -mindepth 1 -maxdepth 1 | grep '([0-9])'); do
         mkdir -p ./_DUPS
-        orig=$(echo $x | sed -re "s/\ \([0-9]\)\././g")
+        orig=$(echo $x | sed -e "s/\ \([0-9]\)\././g")
         if [ ! -e "$orig" ]; then
             if [ "$1" = "-m" ]; then
                 echo "MOVE: $x - does not exists original file. moving... ($x -> $orig)"
