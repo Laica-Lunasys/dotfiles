@@ -59,6 +59,9 @@ Plug 'alvan/vim-closetag'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/async.vim'
 
+" rust
+Plug 'rust-lang/rust.vim'
+
 " Plug 'ervandew/supertab'
 Plug 'maralla/completor.vim'
 " Plug 'Valloric/YouCompleteMe'
