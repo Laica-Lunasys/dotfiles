@@ -61,6 +61,7 @@ Plug 'prabirshrestha/async.vim'
 
 " rust
 Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 " Plug 'ervandew/supertab'
 Plug 'maralla/completor.vim'
