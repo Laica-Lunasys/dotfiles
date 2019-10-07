@@ -24,7 +24,7 @@ Plug 'andrewstuart/vim-kubernetes'
 Plug 'Chiel92/vim-autoformat'
 
 Plug 'nsf/gocode', {'rtp': 'vim/'}
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
