@@ -25,7 +25,6 @@ Plug 'Chiel92/vim-autoformat'
 
 Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'SirVer/ultisnips'
 
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
