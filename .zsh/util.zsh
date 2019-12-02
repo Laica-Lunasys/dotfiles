@@ -92,21 +92,42 @@ mvzip() {
 }
 
 sortcpy() {
-    IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%H' | grep -v / | tail -n +2 | sort -k 6,7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do mkdir -p ./_SORTED && echo ":: Writing $v" ; cat $v > ./_SORTED/$v ; done
-}
-
-sortcpysimple() {
-    IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%H' | grep -v / | tail -n +2 | sort -k 7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do mkdir -p ./_SORTED && echo ":: Writing $v" ; cat $v > ./_SORTED/$v ; done
-}
-
-sortcpytime() {
     IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%s' | grep -v / | tail -n +2 | sort -k 6,7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do mkdir -p ./_SORTED && echo ":: Writing $v" ; cat $v > ./_SORTED/$v ; done
 }
 
+sortcpysimple() {
+    IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%s' | grep -v / | tail -n +2 | sort -nk 7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do mkdir -p ./_SORTED && echo ":: Writing $v" ; cat $v > ./_SORTED/$v ; done
+}
+
+sortcpytime() {
+    IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%s' | grep -v / | tail -n +2 | sort -k 6 -k 7n | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do mkdir -p ./_SORTED && echo ":: Writing $v" ; cat $v > ./_SORTED/$v ; done
+}
+
+sortcpynum() {
+    IFS=$'\n'; for v in $(for f in $(find . -maxdepth 1 -type f); do echo -ne "$(echo $f | sed -e 's/\.\///g') "; ls --color=never -pQl --time-style='+%s' $f; done | sort -t '_' -k 2n -k 1n); do
+        _file=$(echo $v | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\.\///g')
+        mkdir -p ./_SORTED
+        echo ":: Writing $_file"
+        cat $_file > ./_SORTED/$_file
+    done
+}
 
 mp4tomp3() {
     IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%s' | grep ".mp4"| grep -v / | sort -k 6,7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do echo ":: Writing $v" ; ffmpeg -y -i $v -ab 320k $(echo $v | sed -e 's/.mp4//g').mp3; done
 }
+
+trimsound() {
+    mkdir -p ./_GEN
+    IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%s' | grep ".mp4"| grep -v / | sort -k 6,7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do
+        if [ -e "_GEN/$(echo $v | sed -e 's/\.\///g')" ]; then
+            echo "!! Already exists: $v, Skip."
+        else
+            echo ":: Writing $v"
+            ffmpeg -y -i $v -an ./_GEN/$(echo $v | sed -e 's/\.\///g') -vcodec copy
+        fi
+    done
+}
+
 
 # mp4tomp3() {
 #    IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%s' | grep ".mp4"| grep -v / | tail -n +2 | sort -k 6,7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do echo ":: Writing $v" ; ffmpeg -y -i $v -ab 320k $(echo $v | sed -e 's/.mp4//g').mp3; done
