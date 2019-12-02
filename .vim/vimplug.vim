@@ -34,6 +34,8 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'Galooshi/vim-import-js'
+
 augroup Vimrc
   autocmd!
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
