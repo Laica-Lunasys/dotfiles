@@ -32,6 +32,10 @@ echo "$_INFO Setup vim-plug..."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 echo "$_TASK Executing: 'vim -c :PlugInstall'"
 vim -c ':PlugInstall' -c ':q' -c ':q'
+nvim -c ':PlugInstall' -c ':q' -c ':q'
 echo "$_INFO Installed vim packages"
