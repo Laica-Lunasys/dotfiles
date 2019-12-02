@@ -3,14 +3,12 @@ dotfiles
 
 ## Setup
 1. `git clone https://github.com/Laica-Lunasys/dotfiles`
-2. `cd dotfiles; make install`
+2. `cd dotfiles; bash ./init.sh install`
+> Also, you can use `make install`
 
 ## Docker
 ```bash
 docker pull lunasys/dotfiles
-```
-```bash
-docker pull quay.io/lunasys/dotfiles
 ```
 
 ### Usage
