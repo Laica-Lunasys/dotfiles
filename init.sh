@@ -40,6 +40,7 @@ _check() {
 # Install - Install dotfiles
 _install() {
     echo "$_INFO Extracting..."
+    mkdir -p $HOME/.config
     for f in $(_search); do
         ln -snfv $PWD/$f $HOME/$f
     done
