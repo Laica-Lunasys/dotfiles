@@ -32,9 +32,25 @@ _list() {
 # Check - Check requirements
 _check() {
     echo "$_TASK Checking requirements..."
-    if [ ! $(which "curl" 2>/dev/null) ]; then
-        echo "$_ERROR Could not find: curl"
-    fi
+    REQUIRED=("curl" "git")
+    OPTIONAL=("tmux" "zsh" "vim" "nvim")
+
+    for v in ${REQUIRED[@]}; do
+        if [ "$(which "$v" &> /dev/null; echo $?)" == 0 ]; then
+            echo "$_INFO Passed: $v"
+        else
+            echo "$_ERROR Could not find requirements: $v"
+            exit 1
+        fi
+    done
+    for v in ${OPTIONAL[@]}; do
+        if [ "$(which "$v" &> /dev/null; echo $?)" == 0 ]; then
+            echo "$_INFO Passed: $v"
+        else
+            echo "$_WARN Could not find optional: $v"
+        fi
+    done
+
     echo "$_TASK All check passed"
 }
 
@@ -51,9 +67,9 @@ _install() {
 # Clean - Remove dotfiles
 _clean() {
     set +e
+    echo "$_TASK Removing dotfiles..."
     for f in $(_search); do
-        echo "$_INFO Removing $HOME/$f"
-        rm -rf $HOME/$f
+        rm -rfv $HOME/$f
     done
 
     echo "$_TASK Removing fzf"
