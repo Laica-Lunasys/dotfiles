@@ -2,8 +2,9 @@
 set -e
 cd "$(dirname "$0")"
 
-_INFO=$(printf "\e[1;34m::\e[m")
-_TASK=$(printf "\e[1;32m=>\e[m")
+_INFO=$(printf "\e[1;32m>>\e[m")
+_TASK=$(printf "\e[1;34m::\e[m")
+_WARN=$(printf "\e[1;33m!!\e[m")
 _ERROR=$(printf "\e[1;31m!!\e[m")
 
 # Search - Find dotfiles & config
@@ -30,16 +31,16 @@ _list() {
 
 # Check - Check requirements
 _check() {
-    echo "$_INFO Checking requirements..."
+    echo "$_TASK Checking requirements..."
     if [ ! $(which "curl" 2>/dev/null) ]; then
         echo "$_ERROR Could not find: curl"
     fi
-    echo "$_INFO All check passed"
+    echo "$_TASK All check passed"
 }
 
 # Install - Install dotfiles
 _install() {
-    echo "$_INFO Extracting..."
+    echo "$_TASK Extracting..."
     mkdir -p $HOME/.config
     for f in $(_search); do
         ln -snfv $PWD/$f $HOME/$f
