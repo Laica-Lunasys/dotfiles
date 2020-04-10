@@ -6,6 +6,7 @@ Plug 'ujihisa/unite-colorscheme'
 Plug 'tomasr/molokai'
 
 " Custom Plug
+
 Plug 'itchyny/lightline.vim'
 
 Plug 'scrooloose/nerdtree'
@@ -125,6 +126,10 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 "let g:ycm_min_num_of_chars_for_completion = 3
 "let g:ycm_autoclose_preview_window_after_insertion = 1
 "set splitbelow
+
+" mattn's vim config
+Plug 'mattn/vim-lsp-settings'
+
 
 " Syntax Highlight
 Plug 'w0rp/ale'
