@@ -40,8 +40,8 @@ source $HOME/.zsh/color.zsh
 source $HOME/.zsh/alias.zsh
 source $HOME/.zsh/util.zsh
 
-source $HOME/.zsh/vcs.zsh
-source $HOME/.zsh/prompt.zsh
+#source $HOME/.zsh/vcs.zsh
+#source $HOME/.zsh/prompt.zsh
 
 #-----------------------
 # Misc Settings
