@@ -40,3 +40,6 @@ echo "$_TASK Executing: 'vim -c :PlugInstall'"
 vim -c ':PlugInstall' -c ':q' -c ':q'
 nvim -c ':PlugInstall' -c ':q' -c ':q'
 echo "$_TASK Installed vim packages"
+
+echo "$_INFO Operation success! starting zsh..."
+exec zsh
