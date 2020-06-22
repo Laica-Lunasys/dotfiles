@@ -3,6 +3,7 @@ unset POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION
 
 # format
 typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE=' %k%F{033}%n@%m '
+typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_TEMPLATE=' %k%F{033}* %n@%m '
 
 typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     context                 # user@hostname
