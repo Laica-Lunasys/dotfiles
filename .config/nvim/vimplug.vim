@@ -102,6 +102,54 @@ if executable('go-langserver')
     autocmd BufWritePre *.go "LspDocumentFormatSync<CR>"
 endif
 
+" LSP -> Java
+let s:lombok_path = $HOME . '/lsp/lombok.jar'
+if executable('java') && filereadable(expand('~/lsp/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar')) && filereadable(expand(s:lombok_path))
+
+    " ale の設定
+    let g:ale_java_javac_options = "-cp " . s:lombok_path
+
+    " vim-lsp の設定
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'eclipse.jdt.ls',
+        \ 'cmd': {server_info->[
+        \     'java',
+        \     '-javaagent:' . s:lombok_path,
+        \     '-Xbootclasspath/a:' . s:lombok_path,
+        \     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+        \     '-Dosgi.bundles.defaultStartLevel=4',
+        \     '-Declipse.product=org.eclipse.jdt.ls.core.product',
+        \     '-Dlog.level=ALL',
+        \     '-noverify',
+        \     '-Dfile.encoding=UTF-8',
+        \     '-Xmx1G',
+        \     '-jar',
+        \     expand('~/lsp/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar'),
+        \     '-configuration',
+        \     expand('~/lsp/eclipse.jdt.ls/config_linux'),
+        \     '-data',
+        \     getcwd()
+        \ ]},
+        \ 'whitelist': ['java'],
+        \ })
+endif
+
+" Markdown
+if executable('prettier')
+    " [markdown] configure formatprg
+    autocmd FileType markdown set formatprg=prettier\ --parser\ markdown
+
+    " [markdown] format on save
+    autocmd! BufWritePre *.md call s:mdfmt()
+    function s:mdfmt()
+        let l:curw = winsaveview()
+        silent! exe "normal! a \<bs>\<esc>" | undojoin |
+            \ exe "normal gggqG"
+        call winrestview(l:curw)
+    endfunction
+endif
+
+
 " rust
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
