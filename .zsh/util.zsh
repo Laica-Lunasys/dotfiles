@@ -57,6 +57,45 @@ finddups() {
     done
 }
 
+mvsame() {
+    # get hash
+    declare -A _dups_hash
+
+    fileLen="$(find . -mindepth 1 -maxdepth 1 -type f | wc -l)"
+
+    cnt=0
+    IFS=$'\n'
+    for f in $(find . -mindepth 1 -maxdepth 1 -type f); do
+        cnt=$(expr $cnt + 1)
+        echo "$cnt/$fileLen\t$f"
+        file_hash=$(cat $f | md5sum | tr -d ' -')
+        if [ "$_dups_hash[$file_hash]" = "" ]; then
+            _dups_hash[$file_hash]="$f"
+        else
+            _dups_hash[$file_hash]="$_dups_hash[$file_hash]\\$f"
+        fi
+    done
+
+    unset IFS
+    for k in $(echo ${(k)_dups_hash[@]}); do
+        if [ "$(echo $_dups_hash[$k] | grep '\\')" ]; then
+            echo ""
+            echo "$k:"
+            mkdir -p $PWD/_SAME/$k
+
+            IFS=$'\\'
+            for f in $(echo $_dups_hash[$k]); do
+                echo "$f"
+                mv $f $PWD/_SAME/$k/
+            done
+            unset IFS
+        fi
+    done
+}
+
+
+
+
 mvdups() {
     IFS=$'\n'
     for x in $(find . -mindepth 1 -maxdepth 1 | grep '([0-9])'); do
