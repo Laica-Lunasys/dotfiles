@@ -29,6 +29,9 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascri
 Plug 'Galooshi/vim-import-js'
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx'] }
 
+" Svelte
+Plug 'evanleck/vim-svelte'
+
 " toml
 Plug 'cespare/vim-toml'
 
