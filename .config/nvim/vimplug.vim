@@ -48,6 +48,10 @@ Plug 'tpope/vim-endwise'
 " html
 Plug 'alvan/vim-closetag'
 
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 " lsp
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
