@@ -70,8 +70,13 @@ bindkey "^[[4~" end-of-line
 
 bindkey '^[[Z' reverse-menu-complete
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+if [ "$OS" = "macos" ]; then
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+elif [ "$OS" = "linux" ]; then
+    bindkey "$key[Up]" history-substring-search-up
+    bindkey "$key[Down]" history-substring-search-down
+fi
 
 #----------------
 # Completion
@@ -84,6 +89,7 @@ setopt auto_menu
 setopt auto_param_keys
 setopt interactive_comments
 setopt magic_equal_subst
+setopt print_eight_bit
 
 setopt complete_in_word
 setopt always_last_prompt
