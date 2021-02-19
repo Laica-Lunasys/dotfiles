@@ -1,6 +1,8 @@
 dotfiles
 ============
 
+![ScreenShot](https://imgur.com/n3e3ajU.png)
+
 ## Setup
 1. `git clone https://github.com/Laica-Lunasys/dotfiles`
 2. `cd dotfiles; bash ./init.sh install`
