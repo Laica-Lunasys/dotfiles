@@ -171,6 +171,8 @@ endif
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 
+let g:rustfmt_autosave = 1
+
 let g:asyncomplete_auto_popup = 1
 
 function! s:check_back_space() abort
