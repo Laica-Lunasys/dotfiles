@@ -41,5 +41,4 @@ vim -c ':PlugInstall' -c ':q' -c ':q'
 nvim -c ':PlugInstall' -c ':q' -c ':q'
 echo "$_TASK Installed vim packages"
 
-echo "$_INFO Operation success! starting zsh..."
-exec zsh
+echo "$_INFO Operation success! you can now dive in to the world."
