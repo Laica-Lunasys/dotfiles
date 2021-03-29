@@ -6,6 +6,24 @@ set number
 set mouse=a
 
 set clipboard+=unnamedplus
+if has('clipboard') || exists('g:vscode')
+    set clipboard^=unnamed
+
+    if has('nvim') && exists('$WSLENV')
+        let g:clipboard = {
+            \ 'name': 'xclip-wsl',
+            \ 'copy': {
+            \    '+': 'xclip -i',
+            \    '*': 'xclip -i',
+            \  },
+            \ 'paste': {
+            \    '+': 'xclip -o',
+            \    '*': 'xclip -o',
+            \ },
+            \ 'cache_enabled': 0,
+        \ }
+    endif
+endif
 
 set tabstop=4
 set autoindent
