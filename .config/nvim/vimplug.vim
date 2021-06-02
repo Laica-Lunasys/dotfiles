@@ -58,6 +58,9 @@ Plug 'alvan/vim-closetag'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
+" jsonnet
+Plug 'google/vim-jsonnet'
+
 " lsp
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
