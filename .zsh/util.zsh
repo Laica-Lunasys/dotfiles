@@ -172,3 +172,9 @@ trimsound() {
 #    IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%s' | grep ".mp4"| grep -v / | tail -n +2 | sort -k 6,7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do echo ":: Writing $v" ; ffmpeg -y -i $v -ab 320k $(echo $v | sed -e 's/.mp4//g').mp3; done
 # }
 
+# Git Diff
+git_diff() {
+    git add -N .
+    git diff $@
+    git reset
+}
