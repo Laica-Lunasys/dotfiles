@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:experimental
+
 FROM ubuntu:20.04
 
 ARG USERNAME=relias
@@ -13,13 +15,11 @@ RUN apt-get update -qq && \
     useradd ${USERNAME} -m -u 1000 -G sudo -s /bin/zsh && \
     usermod -aG sudo ${USERNAME}
 
-COPY . /home/${USERNAME}/dotfiles
-RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/dotfiles
-
 USER ${USERNAME}
+
+COPY --chown=${USERNAME}:1000 . /home/${USERNAME}/dotfiles
+WORKDIR /home/${USERNAME}/dotfiles
+RUN make install
+
 WORKDIR /home/${USERNAME}
-
-RUN cd /home/${USERNAME}/dotfiles && \
-    make install
-
 CMD ["/bin/zsh"]
