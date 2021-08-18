@@ -57,6 +57,7 @@ Plug 'alvan/vim-closetag'
 " Markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+let g:jsonnet_fmt_on_save = 0
 
 " jsonnet
 Plug 'google/vim-jsonnet'
