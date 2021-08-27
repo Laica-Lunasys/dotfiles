@@ -20,3 +20,6 @@ docker run --rm --name luna-dotfiles \
     -v $HOME/.ssh:/home/relias/.ssh \
     -it lunasys/dotfiles
 ```
+
+### vim (neovim)
+If you want to use lsp, you should be execute `:LspInstallServer` while editing a file.
