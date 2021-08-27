@@ -86,7 +86,6 @@ if executable('clangd')
 endif
 
 " LSP -> Python
-Plug 'ryanolsonx/vim-lsp-python'
 if executable('pyls')
     " pip install python-language-server
     au User lsp_setup call lsp#register_server({
