@@ -142,6 +142,11 @@ sortcpytime() {
     IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%s' | grep -v / | tail -n +2 | sort -k 6 -k 7n | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do mkdir -p ./_SORTED && echo ":: Writing $v" ; cat $v > ./_SORTED/$v ; done
 }
 
+sortcpyfind() {
+    for v in $(find . -mindepth 1 -maxdepth 1 -type f); do mkdir -p ./_SORTED && echo ":: Writing $v"; cat $v > ./_SORTED/$(echo $v | sed -e 's/\.\///g') ; done
+}
+
+
 sortcpynum() {
     IFS=$'\n'; for v in $(for f in $(find . -maxdepth 1 -type f); do echo -ne "$(echo $f | sed -e 's/\.\///g') "; ls --color=never -pQl --time-style='+%s' $f; done | sort -t '_' -k 2n -k 1n); do
         _file=$(echo $v | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\.\///g')
