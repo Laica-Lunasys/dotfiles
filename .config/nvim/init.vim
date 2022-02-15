@@ -1,6 +1,6 @@
-source ~/.config/nvim/keymap.vim
 source ~/.config/nvim/vimplug.vim
 source ~/.config/nvim/settings.vim
+source ~/.config/nvim/keymap.vim
 
 set number
 set mouse=a
