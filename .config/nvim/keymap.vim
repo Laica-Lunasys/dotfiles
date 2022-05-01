@@ -1,7 +1,7 @@
 let mapleader = "\<Space>"
 
 " Indent
-inoremap <expr><Tab> pumvisible() ? "\<C-N>" : <SNR>2_check_back_space() ? "\<C-T>" : asyncomplete#force_refresh()
+inoremap <expr><Tab> pumvisible() ? "\<C-N>" : "\<C-T>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<C-d>"
 
 " Clipboard
