@@ -115,10 +115,25 @@ mvdups() {
 }
 
 mvmov() {
+    IFS=$'\n'
+    for f in $(find . -maxdepth 1 -type f -not -name '*.part'); do
+        if $(file -ib $f | grep -q video/); then
+            mkdir -p ./_MOV
+            mv -v $f ./_MOV
+        fi
+    done
     IFS=$'\n' && for v in $(find . -maxdepth 1 -type f -iname '*.mp4' -o -type f -iname '*.flv' -o -type f -iname '*.webm' -o -type f -iname '*.wmv' -o -type f -iname '*.avi'); do mkdir -p ./_MOV && mv -v $v ./_MOV; done
+
 }
 
 mvimg() {
+    IFS=$'\n'
+    for f in $(find . -maxdepth 1 -type f -not -name '*.part'); do
+        if $(file -ib $f | grep -q image/); then
+            mkdir -p ./_IMG
+            mv -v $f ./_IMG
+        fi
+    done
     IFS=$'\n' && for v in $(find . -maxdepth 1 -type f -iname '*.png' -o -type f -iname '*.jpg' -o -type f -iname '*.jpeg' -o -type f -iname '*.gif' -o -type f -iname '*.bmp'); do mkdir -p ./_IMG && mv -v $v ./_IMG; done
 }
 
