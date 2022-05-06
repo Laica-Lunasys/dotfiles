@@ -171,6 +171,13 @@ sortcpynum() {
     done
 }
 
+sortnum() {
+    IFS=$'\n'; for v in $(for f in $(find . -maxdepth 1 -type f); do echo -ne "$(echo $f | sed -e 's/\.\///g') "; ls --color=never -pQl --time-style='+%s' $f; done | sort -t '_' -k 2n -k 1n); do
+        _file=$(echo $v | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\.\///g')
+        echo "$_file"
+    done
+}
+
 mp4tomp3() {
     IFS=$'\n' && for v in $(ls --color=never -p -Q -l --time-style='+%s' | grep ".mp4"| grep -v / | sort -k 6,7 | cut -d "\"" -f 2- | sed -e 's/\"$//g' -e 's/\\//g'); do echo ":: Writing $v" ; ffmpeg -y -i $v -ab 320k $(echo $v | sed -e 's/.mp4//g').mp3; done
 }
