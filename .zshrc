@@ -5,52 +5,23 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-#--------------------------
-# zsh Configuration
-#--------------------------
 ## Autoload
-autoload -U colors; colors
+autoload -Uz colors; colors
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
+autoload -Uz compinit; compinit
 
 #---------------------
-# Import settings
+# Appearance
 #---------------------
-# Init Antigen
-source $HOME/.zsh/antigen.zsh
-
-OS="$($HOME/.misc/get-osdist.sh | sed -n 1P)"
-PROFILE_DIR="$HOME/.zsh/profile/$OS.zsh"
-if [ -e $PROFILE_DIR ]; then
-    source $PROFILE_DIR
-fi
-
-if [ -e $HOME/.zsh_profile ]; then
-    source $HOME/.zsh_profile
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+# LS_COLOR
 source $HOME/.zsh/color.zsh
-source $HOME/.zsh/alias.zsh
-source $HOME/.zsh/util.zsh
 
-#source $HOME/.zsh/vcs.zsh
-#source $HOME/.zsh/prompt.zsh
-
-#-----------------------
-# Misc Settings
-#-----------------------
-# History
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-
-# Disable Auto Title (for tmux)
-DISABLE_AUTO_TITLE=false
+# Prompt (fallback)
+export PS1="[%n@%m %~]%# "
 
 #----------------------
-# Bind Key
+# Keybind
 #----------------------
 bindkey -e
 bindkey "^?"    backward-delete-char
@@ -95,8 +66,53 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' use-cache false
 
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#-----------------------
+# Misc Settings
+#-----------------------
+# History
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+# Disable Auto Title (for tmux)
+DISABLE_AUTO_TITLE=false
+
+#---------------------
+# Import settings
+#---------------------
+OS="$($HOME/.misc/get-osdist.sh | sed -n 1P)"
+PROFILE_DIR="$HOME/.zsh/profile/$OS.zsh"
+if [ -e $PROFILE_DIR ]; then
+    source $PROFILE_DIR
+fi
+source $HOME/.zsh/alias.zsh
+source $HOME/.zsh/util.zsh
+
+#--------------------------
+# Load external extensions
+#--------------------------
+# fzf: Optimize completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+#---------------------
+# zsh plugins
+#---------------------
+# load plugins (zinit)
+source $HOME/.zsh/zinit.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #export POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh && source $HOME/.zsh/p10k.zsh
+[[ ! -f ~/.p10k.zsh  ]] || source ~/.p10k.zsh && source $HOME/.zsh/p10k.zsh

@@ -14,13 +14,13 @@ if [ ! -d ~/.fzf ]; then
     ~/.fzf/install --all --no-bash --no-fish
 fi
 
-echo "$_TASK Setup Antigen..."
-if [ ! -d ~/.antigen ]; then
-    mkdir -p ~/.antigen
-    curl -L git.io/antigen > ~/.antigen/antigen.zsh
-    if [ $(which zsh) ]; then
-        zsh -c "source ~/.zshrc && exit 0"
-    fi
+echo "$_TASK Setup zinit..."
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d $(dirname $ZINIT_HOME) ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+    bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+    zsh -c "source ~/.zshrc && exit 0"
 fi
 
 echo "$_TASK Setup tpm..."

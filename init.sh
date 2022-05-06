@@ -75,6 +75,9 @@ _clean() {
     echo "$_TASK Removing fzf"
     rm -rf $HOME/.fzf
 
+    echo "$_TASK Removing zinit"
+    rm -rf $HOME/.local/share/zinit
+
     echo "$_TASK Removing Antigen"
     rm -rf $HOME/.antigen
 
