@@ -29,11 +29,6 @@ if [ -e $HOME/.zsh_profile ]; then
     source $HOME/.zsh_profile
 fi
 
-# PATH
-if [ -e $HOME/bin ]; then
-    export PATH=$HOME/bin:$PATH
-fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source $HOME/.zsh/color.zsh
@@ -101,8 +96,6 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' use-cache false
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #export POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
