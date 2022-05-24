@@ -1,3 +1,13 @@
+## Autoload
+autoload -Uz colors; colors
+autoload -Uz vcs_info
+autoload -Uz add-zsh-hook
+autoload -Uz compinit; compinit
+
+#--------------------------
+# Load external extensions
+#--------------------------
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,11 +15,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-## Autoload
-autoload -Uz colors; colors
-autoload -Uz vcs_info
-autoload -Uz add-zsh-hook
-autoload -Uz compinit; compinit
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# load plugins (zinit)
+source $HOME/.zsh/zinit.zsh
 
 #---------------------
 # Appearance
@@ -88,30 +108,12 @@ fi
 source $HOME/.zsh/alias.zsh
 source $HOME/.zsh/util.zsh
 
-#--------------------------
-# Load external extensions
-#--------------------------
-# fzf: Optimize completion
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+if [ -e $HOME/.dotrc.zsh ]; then
+    source $HOME/.dotrc.zsh
 fi
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-#---------------------
-# zsh plugins
-#---------------------
-# load plugins (zinit)
-source $HOME/.zsh/zinit.zsh
+# fzf: Optimize completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #export POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
