@@ -15,6 +15,7 @@ _search() {
         -and -not -name '.git' \
         -and -not -name '.gitmodules' \
         -and -not -name '.gitignore' \
+        -and -not -name '.github' \
         -and -not -name '.config' \
         | sed -e 's/\.\///g'
 

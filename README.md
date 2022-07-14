@@ -10,7 +10,7 @@ dotfiles
 
 ## Docker
 ```bash
-docker pull lunasys/dotfiles
+docker pull ghcr.io/Laica-Lunasys/dotfiles:latest
 ```
 
 ### Usage
@@ -18,7 +18,7 @@ docker pull lunasys/dotfiles
 docker run --rm --name luna-dotfiles \
     -e TZ=Asia/Tokyo \
     -v $HOME/.ssh:/home/relias/.ssh \
-    -it lunasys/dotfiles
+    -it ghcr.io/Laica-Lunasys/dotfiles:latest
 ```
 
 ### vim (neovim)
