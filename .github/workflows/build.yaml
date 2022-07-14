@@ -26,4 +26,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/dotfiles:latest
+            ghcr.io/laica-lunasys/dotfiles:latest
