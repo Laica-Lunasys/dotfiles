@@ -36,9 +36,14 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+echo "$_TASK Setup packer.nvim..."
+git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
 echo "$_TASK Executing: 'vim -c :PlugInstall'"
 vim -c ':PlugInstall' -c ':q' -c ':q'
-nvim -c ':PlugInstall' -c ':q' -c ':q'
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim -c ':q'
 echo "$_TASK Installed vim packages"
 
 echo "$_INFO Operation success! you can now dive in to the world."

@@ -30,6 +30,7 @@ samples
 .vim/bundle/
 .vim/.netrwhist
 .vimrc_sample
+packer_compiled.lua
 
 .tmux/plugins/
 

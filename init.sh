@@ -85,6 +85,8 @@ _clean() {
     echo "$_TASK Removing vim bundles..."
     rm -rf $HOME/.vim/bundle
     rm -rf $HOME/.vim/plugged
+    rm -rf $HOME/.config/nvim/plugin/packer_compiled.lua
+    rm -rf $HOME/.local/share/nvim/site/pack/packer
 }
 
 if [ "$1" = "list" ]; then
