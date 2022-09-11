@@ -5,7 +5,9 @@ if (not status) then return end
 
 local protocol = require('vim.lsp.protocol')
 
+-- Auto format when save
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -103,6 +105,25 @@ mason_lspconfig.setup_handlers({ function(server_name)
         }
     }
 
+    -- Go
+    -- -> Auto import
+    function go_org_imports(wait_ms)
+        local params = vim.lsp.util.make_range_params()
+        params.context = { only = { "source.organizeImports" } }
+        local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+        for cid, res in pairs(result or {}) do
+            for _, r in pairs(res.result or {}) do
+                if r.edit then
+                    local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+                    vim.lsp.util.apply_workspace_edit(r.edit, enc)
+                end
+            end
+        end
+    end
+
+    vim.cmd [[autocmd BufWritePre *.go lua go_org_imports()]]
+
+    -- TypeScript
     if server_name == tsserver then
         opts.filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
         opts.cmd = { "typescript-language-server", "--stdio" }
