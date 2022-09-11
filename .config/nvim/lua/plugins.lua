@@ -16,7 +16,8 @@ packer.startup(function(use)
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-    use 'tomasr/molokai'
+    -- use 'tomasr/molokai'
+    use 'tanvirtin/monokai.nvim'
 
     -- Utils
     use 'nvim-lua/plenary.nvim'

@@ -4,9 +4,7 @@ if (not status) then return end
 ts.setup {
     highlight = {
         enable = true,
-        disable = {
-            "bash"
-        },
+        disable = {},
     },
     indent = {
         enable = true,

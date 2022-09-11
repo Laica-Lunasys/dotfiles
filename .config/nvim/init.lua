@@ -17,14 +17,6 @@ vim.opt.termguicolors = true
 vim.opt.winblend = 0
 vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
-vim.cmd [[
-    if filereadable(expand("$HOME/.local/share/nvim/site/pack/packer/start/molokai/colors/molokai.vim"))
-        colorscheme molokai
-    endif
-
-    highlight Normal ctermbg=none guibg=none
-    highlight NonText ctermbg=none guibg=none
-]]
 
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
