@@ -42,6 +42,8 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim \
 
 echo "$_TASK Executing: 'vim -c :PlugInstall'"
 vim -c ':PlugInstall' -c ':q' -c ':q'
+
+echo "$_TASK Executing: ':PackerSync' for neovim"
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 nvim -c ':q'
 echo "$_TASK Installed vim packages"
