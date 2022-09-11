@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:experimental
-
 FROM ubuntu:22.04
 
 ARG USERNAME=relias
@@ -8,9 +6,20 @@ ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND nointeractive
 
 RUN apt-get update -qq && \
-    apt-get install -y busybox git tmux vim python3-neovim zsh make nano curl wget sudo tzdata nmap && \
-    apt-get clean && \
-    busybox --install && \
+    apt-get install -y \
+    busybox git tmux vim zsh make gcc g++ nano curl wget sudo tzdata nmap \
+    python3 python3-pip golang \
+    software-properties-common
+
+# Install neovim
+RUN add-apt-repository ppa:neovim-ppa/stable && \
+    apt-get update -qq && \
+    apt-get install -y neovim
+
+# Clean
+RUN apt-get clean
+
+RUN busybox --install && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     useradd ${USERNAME} -m -u 1000 -G sudo -s /bin/zsh && \
     usermod -aG sudo ${USERNAME}
