@@ -22,3 +22,7 @@ vim.keymap.set('', 'sh', '<C-w>h')
 vim.keymap.set('', 'sk', '<C-w>k')
 vim.keymap.set('', 'sj', '<C-w>j')
 vim.keymap.set('', 'sl', '<C-w>l')
+
+-- Text Navigation
+vim.keymap.set('n', '<esc>OH', '<home>')
+vim.keymap.set('n', '<esc>OF', '<end>')
