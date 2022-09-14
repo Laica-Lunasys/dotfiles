@@ -26,6 +26,7 @@ ts.setup {
         "toml",
         "fish",
         "php",
+        "proto",
         "json",
         "yaml",
         "css",
