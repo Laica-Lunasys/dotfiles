@@ -1,7 +1,6 @@
 require('plugins')
 require('keymap')
-
-vim.cmd("autocmd!")
+require('file')
 
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
@@ -41,10 +40,11 @@ vim.cmd [[
     endif
 ]]
 
+-- Editor options
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
 
 -- Expand status area
 vim.opt.laststatus = 2
