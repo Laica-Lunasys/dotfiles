@@ -6,7 +6,18 @@ if (not status) then return end
 local protocol = require('vim.lsp.protocol')
 
 -- Auto format when save
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+-- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local lsp_formatting = function(bufnr)
+    --vim.lsp.buf.format({
+    --    filter = function(client)
+    --        -- apply whatever logic you want (in this example, we'll only use null-ls)
+    --        return client.name == "null-ls"
+    --    end,
+    --    bufnr = bufnr,
+    --})
+end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -14,6 +25,15 @@ local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+            lsp_formatting(bufnr)
+        end,
+    })
 
     -- Enable completion triggered by <c-x><c-o>
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -69,21 +89,41 @@ protocol.CompletionItemKind = {
 }
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 nvim_lsp.flow.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
 
--- nvim_lsp.tsserver.setup {
---     on_attach = on_attach,
---     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
---     cmd = { "typescript-language-server", "--stdio" },
---     capabilities = capabilities
--- }
+nvim_lsp.sourcekit.setup {
+    on_attach = on_attach,
+}
+
+--nvim_lsp.tsserver.setup {
+--    on_attach = on_attach,
+--    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+--    cmd = { "typescript-language-server", "--stdio" },
+--    --capabilities = capabilities
+--}
+
+nvim_lsp.sumneko_lua.setup {
+    on_attach = on_attach,
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { 'vim' },
+            },
+
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false
+            },
+        },
+    },
+}
 
 local mason_lspconfig = require('mason-lspconfig')
 mason_lspconfig.setup_handlers({ function(server_name)
@@ -127,6 +167,11 @@ mason_lspconfig.setup_handlers({ function(server_name)
     if server_name == tsserver then
         opts.filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
         opts.cmd = { "typescript-language-server", "--stdio" }
+        opts.on_attach = function(client)
+            client.server_capabilities.document_formatting = false
+            client.server_capabilities.document_range_formatting = false
+            client.server_capabilities.documentFormattingProvider = false
+        end
     end
 
     nvim_lsp[server_name].setup(opts)
