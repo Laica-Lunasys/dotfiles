@@ -16,7 +16,7 @@ packer.startup(function(use)
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-    -- use 'tomasr/molokai'
+    use 'tomasr/molokai'
     use 'tanvirtin/monokai.nvim'
 
     -- Utils
@@ -24,17 +24,19 @@ packer.startup(function(use)
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
     use 'preservim/NERDTree'
+    use 'gpanders/editorconfig.nvim'
 
     -- -> Auto fix trailing white-space
     use 'bronson/vim-trailing-whitespace'
     use 'windwp/nvim-autopairs'
     use 'norcalli/nvim-colorizer.lua'
-    use 'alvan/vim-closetag'
+    --use 'alvan/vim-closetag'
 
     -- Completion
     use 'onsails/lspkind-nvim'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-path'
     use 'hrsh7th/nvim-cmp'
 
     -- Git Support
@@ -42,13 +44,14 @@ packer.startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     use 'kdheepak/lazygit.nvim'
 
+    -- -> helm, gotmpl
+    --use 'towolf/vim-helm'
+
     -- LSP
-    use {
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'neovim/nvim-lspconfig',
-        'hashicorp/terraform-ls',
-    }
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
+    use 'neovim/nvim-lspconfig'
+    use 'hashicorp/terraform-ls'
 
     -- -> formatters
     use 'MunifTanjim/prettier.nvim'
