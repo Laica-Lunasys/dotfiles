@@ -2,7 +2,8 @@
 
 findsame() {
     if [ "$1" = "" ]; then
-        echo "Usage: findsame <fileName>"
+        echo "Usage: findsame <fileName> [-s]"
+        echo "-s - single file (find same files, exit)"
         return
     fi
 
@@ -14,12 +15,19 @@ findsame() {
 
     # get hash
     orig_hash=$(cat ./$fname | md5sum)
+    orig_type="$(file -Nib $fname)"
 
     IFS=$'\n'
     for f in $(find . -mindepth 1 -maxdepth 1 -type f); do
-        file_hash=$(cat ./$f | md5sum)
-        if [ "$f" != "$fname" ] && [ "$orig_hash" = "$file_hash" ]; then
-            echo "$f"
+        target_type="$(file -Nib $f)"
+        if [ "$target_type" = "$orig_type" ]; then
+            file_hash=$(cat ./$f | md5sum)
+            if [ "$f" != "$fname" ] && [ "$orig_hash" = "$file_hash" ]; then
+                echo "$f"
+                if [ "$3" = "-s" ]; then
+                    exit
+                fi
+            fi
         fi
     done
 }
@@ -93,9 +101,6 @@ mvsame() {
     done
 }
 
-
-
-
 mvdups() {
     IFS=$'\n'
     for x in $(find . -mindepth 1 -maxdepth 1 | grep '([0-9])'); do
@@ -109,7 +114,13 @@ mvdups() {
                 echo "WARN: $x - does not exists original file. skipped. ($orig)"
             fi
         else
-            mv -v $x ./_DUPS
+            echo "-> $x"
+            fsame="$(findsame $x -s)"
+            if [ "$fsame" != "" ]; then
+                mv -v $x ./_DUPS
+            else
+                echo "SKIPPED: $x - does not exists original file."
+            fi
         fi
     done
 }
