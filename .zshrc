@@ -4,6 +4,9 @@ autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 autoload -Uz compinit; compinit
 
+# Avoid duplicates in path
+typeset -U path PATH
+
 #--------------------------
 # Load external extensions
 #--------------------------
