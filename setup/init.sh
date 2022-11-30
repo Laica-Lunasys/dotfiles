@@ -45,7 +45,8 @@ vim -c ':PlugInstall' -c ':q' -c ':q'
 
 echo "$_TASK Executing: ':PackerSync' for neovim"
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-nvim -c ':q'
+nvim --headless -c ':q'
+echo ""
 echo "$_TASK Installed vim packages"
 
 echo "$_INFO Operation success! you can now dive in to the world."
