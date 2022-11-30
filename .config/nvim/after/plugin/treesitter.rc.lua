@@ -11,7 +11,8 @@ ts.setup {
         enable = true,
         disable = {},
     },
-    -- ensure_installed = "all",
+    sync_install = true,
+    auto_install = true,
     ensure_installed = {
         "bash",
         "c",
