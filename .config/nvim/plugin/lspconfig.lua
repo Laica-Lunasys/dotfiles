@@ -6,7 +6,7 @@ if (not status) then return end
 local protocol = require('vim.lsp.protocol')
 
 -- Auto format when save
--- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+-- vim.cmd [[autocmd BufWritePost * lua vim.lsp.buf.format()]]
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local lsp_formatting = function(bufnr)
@@ -57,7 +57,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<C-]>', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('i', '<C-]>', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+    vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
 end
 
 protocol.CompletionItemKind = {
