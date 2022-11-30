@@ -5,6 +5,7 @@ ts.setup {
     highlight = {
         enable = true,
         disable = {},
+        additional_vim_regex_highlighting = true,
     },
     indent = {
         enable = true,
@@ -21,6 +22,7 @@ ts.setup {
         "graphql",
         "hcl",
         "java",
+        "jsonnet",
         "python",
         "tsx",
         "toml",
