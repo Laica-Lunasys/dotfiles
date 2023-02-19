@@ -28,7 +28,7 @@ lspconfig.setup({
         -- "solargraph",
         "rust_analyzer",
         -- "sqlls",
-        "sumneko_lua",
+        "lua_ls",
         "svelte",
         "taplo",
         "tailwindcss",
