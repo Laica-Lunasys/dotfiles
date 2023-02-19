@@ -27,7 +27,8 @@ packer.startup(function(use)
     use 'gpanders/editorconfig.nvim'
 
     -- -> Auto fix trailing white-space
-    use 'bronson/vim-trailing-whitespace'
+    -- use 'bronson/vim-trailing-whitespace'
+    use 'ntpeters/vim-better-whitespace'
     use 'windwp/nvim-autopairs'
     use 'norcalli/nvim-colorizer.lua'
     --use 'alvan/vim-closetag'
