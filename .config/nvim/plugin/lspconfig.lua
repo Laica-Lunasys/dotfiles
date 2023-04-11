@@ -6,37 +6,26 @@ if (not status) then return end
 local protocol = require('vim.lsp.protocol')
 
 -- Auto format when save
--- vim.cmd [[autocmd BufWritePost * lua vim.lsp.buf.format()]]
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-local lsp_formatting = function(bufnr)
-    --vim.lsp.buf.format({
-    --    filter = function(client)
-    --        -- apply whatever logic you want (in this example, we'll only use null-ls)
-    --        return client.name == "null-ls"
-    --    end,
-    --    bufnr = bufnr,
-    --})
+local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local enable_format_on_save = function(_, bufnr)
+    vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup_format,
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format({ bufnr = bufnr })
+        end,
+    })
 end
+
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-            lsp_formatting(bufnr)
-        end,
-    })
-
     -- Enable completion triggered by <c-x><c-o>
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
     -- -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -98,6 +87,7 @@ nvim_lsp.flow.setup {
 
 nvim_lsp.sourcekit.setup {
     on_attach = on_attach,
+    capabilities = capabilities
 }
 
 --nvim_lsp.tsserver.setup {
@@ -172,6 +162,12 @@ mason_lspconfig.setup_handlers({ function(server_name)
             client.server_capabilities.document_range_formatting = false
             client.server_capabilities.documentFormattingProvider = false
         end
+    end
+
+    -- jsonnet
+    if server_name == "jsonnet_ls" then
+        opts.cmd = { "jsonnet-language-server" }
+        opts.single_file_support = true
     end
 
     nvim_lsp[server_name].setup(opts)
