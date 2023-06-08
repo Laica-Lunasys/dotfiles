@@ -53,6 +53,7 @@ packer.startup(function(use)
     use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
     use 'hashicorp/terraform-ls'
+    use 'towolf/vim-helm'
 
     -- -> formatters
     use 'MunifTanjim/prettier.nvim'
