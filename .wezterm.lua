@@ -50,7 +50,8 @@ config.font_size = 10.0
 -- config.custom_block_glyphs = true
 -- config.allow_square_glyphs_to_overflow_width = "Always"
 -- config.freetype_load_target = "Light"
--- config.freetype_load_flags = "NO_AUTOHINT"
+-- config.freetype_load_target = "Normal"
+config.freetype_load_flags = "NO_HINTING"
 
 -- 最大化 → ウィンドウタイトルドラッグ時にウィンドウが消えるのでfalse
 -- って思ったけど関係なさそう。
