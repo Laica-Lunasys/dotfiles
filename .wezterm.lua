@@ -90,7 +90,11 @@ config.debug_key_events = false
 ---------------
 -- UI Custom --
 ---------------
+
+-- works only in non-fancy tab
 config.tab_max_width = 32
+
+-- use fancy tab
 config.use_fancy_tab_bar = true
 
 -- FANCY
@@ -144,6 +148,43 @@ config.colors = {
         }
     }
 }
+
+wezterm.on(
+    'format-tab-title',
+    function(tab, tabs, panes, config, hover, max_width)
+        local edge_background = config.colors.tab_bar.inactive_tab.bg_color
+        local edge_foreground = config.colors.tab_bar.inactive_tab.fg_color
+
+        local background = config.colors.tab_bar.inactive_tab.bg_color
+        local foreground = config.colors.tab_bar.inactive_tab.fg_color
+
+        if tab.is_active then
+            background = config.colors.tab_bar.active_tab.bg_color
+            foreground = config.colors.tab_bar.active_tab.fg_color
+        elseif hover then
+            background = config.colors.tab_bar.active_tab.bg_color
+            foreground = config.colors.tab_bar.active_tab.fg_color
+        end
+
+        local title = tab_title(tab)
+
+        -- ensure that the titles fit in the available space,
+        -- and that we have room for the edges.
+        title = wezterm.truncate_right(title, max_width - 2)
+
+        return {
+            { Background = { Color = edge_background } },
+            { Foreground = { Color = edge_foreground } },
+            { Text = " " },
+            { Background = { Color = background } },
+            { Foreground = { Color = foreground } },
+            { Text = string.format("%d: %s", tab.tab_index + 1, title) },
+            { Background = { Color = edge_background } },
+            { Foreground = { Color = edge_foreground } },
+            { Text = " " },
+        }
+    end
+)
 
 -- CLASSIC: TITLE BAR CONFIG
 local SOLID_CLOSE = "×"
