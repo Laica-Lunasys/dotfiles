@@ -59,7 +59,7 @@ packer.startup(function(use)
     use 'MunifTanjim/prettier.nvim'
     use 'jose-elias-alvarez/null-ls.nvim'
 
-    use 'glepnir/lspsaga.nvim'
+    use 'nvimdev/lspsaga.nvim'
     use 'L3MON4D3/LuaSnip'
 
     -- -> treesitter
