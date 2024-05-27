@@ -13,6 +13,7 @@ config.automatically_reload_config = true
 -- IME (Japanese support)
 config.use_ime = true
 config.allow_win32_input_mode = true
+config.macos_forward_to_ime_modifier_mask = "SHIFT|CTRL"
 
 -- UI
 config.enable_tab_bar = true
