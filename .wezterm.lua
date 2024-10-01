@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 -- System
 default_prog = null
 if string.find(wezterm.target_triple, "windows") then
-    default_prog = {"pwsh.exe"}
+    default_prog = { "pwsh.exe" }
 end
 config.default_prog = default_prog
 
@@ -32,7 +32,7 @@ config.window_background_gradient = {
     -- Specifies the set of colors that are interpolated in the gradient.
     -- Accepts CSS style color specs, from named colors, through rgb
     -- strings and more
-    colors = {'#000000'},
+    colors = { '#000000' },
 
     -- Instead of specifying `colors`, you can use one of a number of
     -- predefined, preset gradients.
@@ -63,9 +63,21 @@ config.window_padding = {
 -- config.color_scheme = 'midnight-in-mojave'
 
 -- Font
-config.font = wezterm.font_with_fallback({ -- "Inconsolata",
-"Cascadia Mono", "M+ 1p"})
-config.font_size = 10.0
+config.font = wezterm.font_with_fallback({
+    -- <built-in>
+    "JetBrains Mono",
+
+    -- <built-in>
+    "Noto Color Emoji",
+
+    -- <built-in>
+    "Symbols Nerd Font Mono",
+
+    -- M+
+    "M+ 1p"
+})
+
+config.font_size = 12.0
 -- config.custom_block_glyphs = true
 -- config.allow_square_glyphs_to_overflow_width = "Always"
 -- config.freetype_load_target = "Light"
@@ -78,31 +90,36 @@ config.prefer_egl = false
 --------------
 -- Key bind --
 --------------
-config.keys = {{
-    key = ' ',
-    mods = 'SHIFT|CTRL',
-    action = wezterm.action.QuickSelect
-}, {
-    key = "{",
-    mods = "SHIFT|ALT",
-    action = wezterm.action {
-        ActivateTabRelative = -1
-    }
-}, {
-    key = "}",
-    mods = "SHIFT|ALT",
-    action = wezterm.action {
-        ActivateTabRelative = 1
-    }
-}, {
-    key = "!",
-    mods = "SHIFT|CTRL",
-    action = wezterm.action {
-        SpawnCommandInNewTab = {
-            args = {"wsl", "--cd", "~"}
+config.keys = {
+    {
+        key = ' ',
+        mods = 'SHIFT|CTRL',
+        action = wezterm.action.QuickSelect
+    },
+    {
+        key = "{",
+        mods = "SHIFT|ALT",
+        action = wezterm.action {
+            ActivateTabRelative = -1
+        }
+    },
+    {
+        key = "}",
+        mods = "SHIFT|ALT",
+        action = wezterm.action {
+            ActivateTabRelative = 1
+        }
+    },
+    {
+        key = "!",
+        mods = "SHIFT|CTRL",
+        action = wezterm.action {
+            SpawnCommandInNewTab = {
+                args = { "wsl", "--cd", "~" }
+            }
         }
     }
-}}
+}
 config.debug_key_events = false
 
 ---------------
@@ -189,37 +206,47 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
     -- and that we have room for the edges.
     title = wezterm.truncate_right(title, max_width - 2)
 
-    return {{
-        Background = {
-            Color = edge_background
+    return {
+        {
+            Background = {
+                Color = edge_background
+            }
+        },
+        {
+            Foreground = {
+                Color = edge_foreground
+            }
+        },
+        {
+            Text = " "
+        },
+        {
+            Background = {
+                Color = background
+            }
+        },
+        {
+            Foreground = {
+                Color = foreground
+            }
+        },
+        {
+            Text = string.format("%d: %s", tab.tab_index + 1, title)
+        },
+        {
+            Background = {
+                Color = edge_background
+            }
+        },
+        {
+            Foreground = {
+                Color = edge_foreground
+            }
+        },
+        {
+            Text = " "
         }
-    }, {
-        Foreground = {
-            Color = edge_foreground
-        }
-    }, {
-        Text = " "
-    }, {
-        Background = {
-            Color = background
-        }
-    }, {
-        Foreground = {
-            Color = foreground
-        }
-    }, {
-        Text = string.format("%d: %s", tab.tab_index + 1, title)
-    }, {
-        Background = {
-            Color = edge_background
-        }
-    }, {
-        Foreground = {
-            Color = edge_foreground
-        }
-    }, {
-        Text = " "
-    }}
+    }
 end)
 
 -- CLASSIC: TITLE BAR CONFIG
@@ -228,46 +255,63 @@ local SOLID_MAXIMIZE = "▢"
 local SOLID_HIDE = "-"
 
 config.tab_bar_style = {
-    window_close = wezterm.format {{
-        Text = '  ' .. SOLID_CLOSE .. '  '
-    }},
-    window_close_hover = wezterm.format {{
-        Attribute = {
-            Italic = false
+    window_close = wezterm.format {
+        {
+            Text = '  ' .. SOLID_CLOSE .. '  '
         }
-    }, {
-        Background = {
-            Color = '#E81123'
+    },
+    window_close_hover = wezterm.format {
+        {
+            Attribute = {
+                Italic = false
+            }
+        },
+        {
+            Background = {
+                Color = '#E81123'
+            }
+        },
+        {
+            Foreground = {
+                Color = '#FFFFFF'
+            }
+        },
+        {
+            Text = '  ' .. SOLID_CLOSE .. '  '
         }
-    }, {
-        Foreground = {
-            Color = '#FFFFFF'
-        }
-    }, {
-        Text = '  ' .. SOLID_CLOSE .. '  '
-    }},
+    },
 
-    window_maximize = wezterm.format {{
-        Text = '  ' .. SOLID_MAXIMIZE .. '  '
-    }},
-    window_maximize_hover = wezterm.format {{
-        Attribute = {
-            Italic = false
+    window_maximize = wezterm.format {
+        {
+            Text = '  ' .. SOLID_MAXIMIZE .. '  '
         }
-    }, {
-        Text = '  ' .. SOLID_MAXIMIZE .. '  '
-    }},
+    },
+    window_maximize_hover = wezterm.format {
+        {
+            Attribute = {
+                Italic = false
+            }
+        },
+        {
+            Text = '  ' .. SOLID_MAXIMIZE .. '  '
+        }
+    },
 
-    window_hide = wezterm.format {{
-        Text = '  ' .. SOLID_HIDE .. '  '
-    }},
-    window_hide_hover = wezterm.format {{
-        Attribute = {
-            Italic = false
+    window_hide = wezterm.format {
+        {
+            Text = '  ' .. SOLID_HIDE .. '  '
         }
-    }, {
-        Text = '  ' .. SOLID_HIDE .. '  '
-    }}
+    },
+    window_hide_hover = wezterm.format {
+        {
+            Attribute = {
+                Italic = false
+            }
+        },
+        {
+            Text = '  ' .. SOLID_HIDE .. '  '
+        }
+    }
 }
 
 return config
