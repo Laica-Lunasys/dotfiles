@@ -7,4 +7,4 @@ vim.keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 
 vim.keymap.set("n", "<C-]>", vim.lsp.buf.code_action, bufopts)
-vim.keymap.set("n", "<C-[>", vim.lsp.buf.format, bufopts)
+vim.keymap.set("n", "<C-f>", vim.lsp.buf.format, bufopts)
