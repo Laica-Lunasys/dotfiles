@@ -32,6 +32,10 @@ samples
 .vimrc_sample
 packer_compiled.lua
 
+.luarc.json
+lazy-lock.json
+lazyvim.json
+
 .tmux/plugins/
 
 **/*_history
