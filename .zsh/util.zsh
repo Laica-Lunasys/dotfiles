@@ -7,6 +7,9 @@ findsame() {
         return
     fi
 
+    # get hash
+    declare -A _dups_hash
+
     fname=$1
     if [ ! -e "$fname" ]; then
         echo "file not found: $fname"
@@ -14,14 +17,15 @@ findsame() {
     fi
 
     # get hash
-    orig_hash=$(cat ./$fname | md5sum)
+    orig_hash=$(xxhsum ./$fname | cut -d ' ' -f 1)
+    echo "Original Hash: $orig_hash"
     orig_type="$(file -Nib $fname)"
 
     IFS=$'\n'
     for f in $(find . -mindepth 1 -maxdepth 1 -type f); do
         target_type="$(file -Nib $f)"
         if [ "$target_type" = "$orig_type" ]; then
-            file_hash=$(cat ./$f | md5sum)
+            file_hash=$(xxhsum ./$f | cut -d ' ' -f 1)
             if [ "$f" != "$fname" ] && [ "$orig_hash" = "$file_hash" ]; then
                 echo "$f"
                 if [ "$3" = "-s" ]; then
@@ -43,7 +47,7 @@ finddups() {
     for f in $(find . -mindepth 1 -maxdepth 1 -type f); do
         cnt=$(expr $cnt + 1)
         echo "$cnt/$fileLen\t$f"
-        file_hash=$(cat $f | md5sum | tr -d ' -')
+        file_hash=$(xxhsum $f | cut -d ' ' -f 1)
         if [ "$_dups_hash[$file_hash]" = "" ]; then
             _dups_hash[$file_hash]="$f"
         else
@@ -76,7 +80,7 @@ mvsame() {
     for f in $(find . -mindepth 1 -maxdepth 1 -type f); do
         cnt=$(expr $cnt + 1)
         echo "$cnt/$fileLen\t$f"
-        file_hash=$(cat $f | md5sum | tr -d ' -')
+        file_hash=$(xxhsum $f | cut -d ' ' -f 1)
         if [ "$_dups_hash[$file_hash]" = "" ]; then
             _dups_hash[$file_hash]="$f"
         else
@@ -115,11 +119,15 @@ mvdups() {
             fi
         else
             echo "-> $x"
-            fsame="$(findsame $x -s)"
-            if [ "$fsame" != "" ]; then
+            if [ "$1" = "-f" ]; then
                 mv -v $x ./_DUPS
             else
-                echo "SKIPPED: $x - does not exists original file."
+                fsame="$(findsame $x -s)"
+                if [ "$fsame" != "" ]; then
+                    mv -vn $x ./_DUPS
+                else
+                    echo "SKIPPED: $x - does not exists original file."
+                fi
             fi
         fi
     done
@@ -127,13 +135,13 @@ mvdups() {
 
 mvmov() {
     IFS=$'\n'
-    for f in $(find . -maxdepth 1 -type f -not -name '*.part'); do
+    for f in $(find . -maxdepth 1 -type f -not -name '*.part' -and -not -name '*.crdownload'); do
         if $(file -ib $f | grep -q video/); then
             mkdir -p ./_MOV
             mv -v $f ./_MOV
         fi
     done
-    IFS=$'\n' && for v in $(find . -maxdepth 1 -type f -iname '*.mp4' -o -type f -iname '*.flv' -o -type f -iname '*.webm' -o -type f -iname '*.wmv' -o -type f -iname '*.avi'); do mkdir -p ./_MOV && mv -v $v ./_MOV; done
+    IFS=$'\n' && for v in $(find . -maxdepth 1 -type f -iname '*.mp4' -o -type f -iname '*.flv' -o -type f -iname '*.webm' -o -type f -iname '*.wmv' -o -type f -iname '*.avi' -and -not -name '*.crdownload'); do mkdir -p ./_MOV && mv -v $v ./_MOV; done
 
 }
 
@@ -181,6 +189,29 @@ sortcpynum() {
         cat $_file > ./_SORTED/$_file
     done
 }
+
+sortcpypx() {
+    # (1)YMD  |(2)SEC      |(3)NUM_NAME
+    # 23032214?251679462755?1xxxxxxxx_xxx.png"
+    # 23032214?251679462755?1xxxxxxxx_001_xxx.png"
+    IFS=$'\n'; for v in $(find . -mindepth 1 -maxdepth 1 -type f -printf '%TY%Tm%Td%TH?%TM%Ts?%f\n' | sed -e 's/\\//g' | sort -s -t '?' -k 1n -k 3,4n -k 2 | cut -d '?' -f 3-); do
+            mkdir -p ./_SORTED
+            echo ":: Writing $v"
+            cat $v > ./_SORTED/$v
+        done
+}
+
+# sortcpyfb() {
+#     # (1)YMD  |(2)SEC      |(3)NUM_ID_NAME
+#     # 23032214?251679462755?1xxxxxxxx_xxx.png"
+#     # 23032214?251679462755?1xxxxxxxx_001_xxx.png"
+#     IFS=$'\n'; for v in $(find . -mindepth 1 -maxdepth 1 -type f -printf '%TY%Tm%Td%TH?%TM%Ts?%f\n' | sed -e 's/\\//g' | sort -s -t '?' -k 1n -k 3,4n -k 2 | cut -d '?' -f 3-); do
+#             mkdir -p ./_SORTED
+#             echo ":: Writing $v"
+#             cat $v > ./_SORTED/$v
+#         done
+# }
+
 
 sortnum() {
     IFS=$'\n'; for v in $(for f in $(find . -maxdepth 1 -type f); do echo -ne "$(echo $f | sed -e 's/\.\///g') "; ls --color=never -pQl --time-style='+%s' $f; done | sort -t '_' -k 2n -k 1n); do
