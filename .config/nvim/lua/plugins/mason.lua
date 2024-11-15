@@ -1,0 +1,37 @@
+return {
+	{
+		"williamboman/mason.nvim",
+		opts = function(_, opts)
+			vim.list_extend(opts.ensure_installed, {
+				"stylua",
+				"shfmt",
+				"bash-language-server",
+				"clangd",
+				"css-lsp",
+				"dockerfile-language-server",
+				"docker-compose-language-service",
+				"eslint-lsp",
+				"gopls",
+				"html-lsp",
+				"jq",
+				"jsonlint",
+				"jdtls",
+				"jsonnet-language-server",
+				"kotlin-language-server",
+				"marksman",
+				"python-lsp-server",
+				"rust-analyzer",
+				"lua-language-server",
+				"svelte-language-server",
+				"taplo",
+				"tailwindcss-language-server",
+				"terraform-ls",
+				"vim-language-server",
+				"vue-language-server",
+				"lemminx",
+				"yaml-language-server",
+				"tflint",
+			})
+		end,
+	},
+}
