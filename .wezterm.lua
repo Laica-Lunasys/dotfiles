@@ -64,17 +64,19 @@ config.window_padding = {
 
 -- Font
 config.font = wezterm.font_with_fallback({
+    -- -- <built-in>
+    -- "Symbols Nerd Font Mono",
+
+    "CaskaydiaCove Nerd Font Mono",
+
     -- <built-in>
     "JetBrains Mono",
 
     -- <built-in>
     "Noto Color Emoji",
 
-    -- <built-in>
-    "Symbols Nerd Font Mono",
-
     -- M+
-    "M+ 1p"
+    "M PLUS 1 Code"
 })
 
 config.font_size = 12.0
