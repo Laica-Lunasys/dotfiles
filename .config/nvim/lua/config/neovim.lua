@@ -22,6 +22,10 @@ vim.opt.backspace = { "start", "eol", "indent" }
 -- Auto reload
 vim.bo.autoread = true
 
+-- Disable autoformat
+vim.b.autoformat = false
+vim.g.autoformat = false
+
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
 vim.cmd([[
