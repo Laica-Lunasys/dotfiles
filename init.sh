@@ -87,6 +87,9 @@ _clean() {
     rm -rf $HOME/.vim/plugged
     rm -rf $HOME/.config/nvim/plugin/packer_compiled.lua
     rm -rf $HOME/.local/share/nvim/site/pack/packer
+    rm -rf $HOME/.local/share/nvim/site/
+    rm -rf $HOME/.local/share/nvim/lazy/
+    rm -rf $HOME/.local/share/nvim/mason/
 }
 
 if [ "$1" = "list" ]; then
