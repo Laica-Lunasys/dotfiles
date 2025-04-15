@@ -2,7 +2,7 @@
 autoload -Uz colors; colors
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
-autoload -Uz compinit; compinit
+autoload -Uz compinit; compinit -C
 
 # Avoid duplicates in path
 typeset -U path PATH
@@ -111,12 +111,10 @@ fi
 source $HOME/.zsh/alias.zsh
 source $HOME/.zsh/util.zsh
 
-if [ -e $HOME/.dotrc.zsh ]; then
-    source $HOME/.dotrc.zsh
-fi
-
 # fzf: Optimize completion
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && \
+    export PATH="$PATH:$HOME/.fzf/bin" && \
+    source <(~/.fzf/bin/fzf --zsh)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #export POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true

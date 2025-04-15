@@ -11,7 +11,7 @@ _ERROR=$(printf "\e[1;31m!!\e[m")
 echo "$_TASK Setup fzf..."
 if [ ! -d ~/.fzf ]; then
     git clone https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --all --no-bash --no-fish
+    ~/.fzf/install --all --no-update-rc --no-bash --no-zsh --no-fish
 fi
 
 echo "$_TASK Setup zinit..."
