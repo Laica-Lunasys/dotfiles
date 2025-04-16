@@ -41,7 +41,11 @@ source $HOME/.zsh/zinit.zsh
 source $HOME/.zsh/color.zsh
 
 # Prompt (fallback)
-export PS1="[%n@%m %~]%# "
+PS1="[%n@%m %~]%# "
+
+# For multiline prompt support
+#precmd() { precmd() { echo "" } }
+#alias clear="precmd() { precmd() { echo } } && clear"
 
 #----------------------
 # Keybind
