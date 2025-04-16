@@ -17,8 +17,6 @@ Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plug 'scrooloose/nerdtree'
 
-Plug 'posva/vim-vue'
-
 Plug 'Chiel92/vim-autoformat'
 
 " Syntax Highlight
