@@ -76,11 +76,10 @@ _clean() {
     echo "$_TASK Removing fzf"
     rm -rf $HOME/.fzf
 
-    echo "$_TASK Removing zinit"
+    echo "$_TASK Removing zsh plugins..."
     rm -rf $HOME/.local/share/zinit
-
-    echo "$_TASK Removing Antigen"
     rm -rf $HOME/.antigen
+    rm -rf $HOME/.antidote
 
     echo "$_TASK Removing vim bundles..."
     rm -rf $HOME/.vim/bundle

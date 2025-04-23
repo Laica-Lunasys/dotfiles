@@ -1,0 +1,341 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = """\
+$username$hostname \
+$directory\
+${env_var.PROMPT_VCS_STATUS_LOCAL_BRANCH}\
+${env_var.PROMPT_VCS_STATUS_COMMITS_BEHIND}${env_var.PROMPT_VCS_STATUS_COMMITS_AHEAD}\
+${env_var.PROMPT_VCS_STATUS_PUSH_COMMITS_BEHIND}${env_var.PROMPT_VCS_STATUS_PUSH_COMMITS_AHEAD}\
+${env_var.PROMPT_VCS_STATUS_STASHES}\
+${env_var.PROMPT_VCS_STATUS_NUM_CONFLICTED}\
+${env_var.PROMPT_VCS_STATUS_NUM_STAGED}\
+${env_var.PROMPT_VCS_STATUS_NUM_UNSTAGED}\
+${env_var.PROMPT_VCS_STATUS_NUM_UNTRACKED}\
+$cmd_duration\
+$line_break\
+$character\
+"""
+
+right_format = """
+$shlvl\
+$singularity\
+$kubernetes\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$crystal\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$status\
+"""
+
+# [character]
+#success_symbol = "[❯](purple)"
+#error_symbol = "[❯](red)"
+#vimcmd_symbol = "[❮](green)"
+
+
+# [env_var.PROMPT_VCS_STATUS_ACTION]
+# variable = "PROMPT_VCS_STATUS_ACTION"
+# symbol = ""
+# format = "([$symbol$env_value](76) )"
+
+[env_var.PROMPT_VCS_STATUS_COMMIT]
+variable = "PROMPT_VCS_STATUS_COMMIT"
+symbol = "@"
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_COMMITS_AHEAD]
+variable = "PROMPT_VCS_STATUS_COMMITS_AHEAD"
+symbol = "⇡"
+format = "([$symbol$env_value](76) )"
+
+[env_var.PROMPT_VCS_STATUS_COMMITS_BEHIND]
+variable = "PROMPT_VCS_STATUS_COMMITS_BEHIND"
+symbol = "⇣"
+format = "([$symbol$env_value](76) )"
+
+# [env_var.PROMPT_VCS_STATUS_COMMIT_ENCODING]
+# variable = "PROMPT_VCS_STATUS_COMMIT_ENCODING"
+# symbol = ""
+# format = "([$symbol$env_value]() )"
+
+# [env_var.PROMPT_VCS_STATUS_COMMIT_SUMMARY]
+# variable = "PROMPT_VCS_STATUS_COMMIT_SUMMARY"
+# symbol = ""
+# format = "([$symbol$env_value]() )"
+
+# [env_var.PROMPT_VCS_STATUS_HAS_CONFLICTED]
+# variable = "PROMPT_VCS_STATUS_HAS_CONFLICTED"
+# symbol = ""
+# format = "([$symbol$env_value](196) )"
+
+# [env_var.PROMPT_VCS_STATUS_HAS_STAGED]
+# variable = "PROMPT_VCS_STATUS_HAS_STAGED"
+# symbol = ""
+# format = "([$symbol$env_value]() )"
+
+# [env_var.PROMPT_VCS_STATUS_HAS_UNSTAGED]
+# variable = "PROMPT_VCS_STATUS_HAS_UNSTAGED"
+# symbol = ""
+# format = "([$symbol$env_value]() )"
+
+# [env_var.PROMPT_VCS_STATUS_HAS_UNTRACKED]
+# variable = "PROMPT_VCS_STATUS_HAS_UNTRACKED"
+# symbol = ""
+# format = "([$symbol$env_value]() )"
+
+# [env_var.PROMPT_VCS_STATUS_INDEX_SIZE]
+# variable = "PROMPT_VCS_STATUS_INDEX_SIZE"
+# symbol = ""
+# format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_LOCAL_BRANCH]
+variable = "PROMPT_VCS_STATUS_LOCAL_BRANCH"
+symbol = ""
+format = "([$symbol$env_value](76) )"
+
+[env_var.PROMPT_VCS_STATUS_NUM_ASSUME_UNCHANGED]
+variable = "PROMPT_VCS_STATUS_NUM_ASSUME_UNCHANGED"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_NUM_CONFLICTED]
+variable = "PROMPT_VCS_STATUS_NUM_CONFLICTED"
+symbol = "~"
+format = "([$symbol$env_value](196) )"
+
+[env_var.PROMPT_VCS_STATUS_NUM_STAGED]
+variable = "PROMPT_VCS_STATUS_NUM_STAGED"
+symbol = "+"
+format = "([$symbol$env_value](196) )"
+
+[env_var.PROMPT_VCS_STATUS_NUM_UNSTAGED]
+variable = "PROMPT_VCS_STATUS_NUM_UNSTAGED"
+symbol = "!"
+format = "([$symbol$env_value](178) )"
+
+[env_var.PROMPT_VCS_STATUS_NUM_SKIP_WORKTREE]
+variable = "PROMPT_VCS_STATUS_NUM_SKIP_WORKTREE"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_NUM_STAGED_NEW]
+variable = "PROMPT_VCS_STATUS_NUM_STAGED_NEW"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_NUM_STAGED_DELETED]
+variable = "PROMPT_VCS_STATUS_NUM_STAGED_DELETED"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_NUM_UNSTAGED_DELETED]
+variable = "PROMPT_VCS_STATUS_NUM_UNSTAGED_DELETED"
+symbol = "!"
+format = "([$symbol$env_value](196) )"
+
+[env_var.PROMPT_VCS_STATUS_NUM_UNTRACKED]
+variable = "PROMPT_VCS_STATUS_NUM_UNTRACKED"
+symbol = "?"
+format = "([$symbol$env_value](39) )"
+
+[env_var.PROMPT_VCS_STATUS_PUSH_COMMITS_AHEAD]
+variable = "PROMPT_VCS_STATUS_PUSH_COMMITS_AHEAD"
+symbol = "⇢"
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_PUSH_COMMITS_BEHIND]
+variable = "PROMPT_VCS_STATUS_PUSH_COMMITS_BEHIND"
+symbol = "⇠"
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_PUSH_REMOTE_NAME]
+variable = "PROMPT_VCS_STATUS_PUSH_REMOTE_NAME"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_PUSH_REMOTE_URL]
+variable = "PROMPT_VCS_STATUS_PUSH_REMOTE_URL"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_REMOTE_BRANCH]
+variable = "PROMPT_VCS_STATUS_REMOTE_BRANCH"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_REMOTE_NAME]
+variable = "PROMPT_VCS_STATUS_REMOTE_NAME"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_REMOTE_URL]
+variable = "PROMPT_VCS_STATUS_REMOTE_URL"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_RESULT]
+variable = "PROMPT_VCS_STATUS_RESULT"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_STASHES]
+variable = "PROMPT_VCS_STATUS_STASHES"
+symbol = "*"
+format = "([$symbol$env_value](76) )"
+
+[env_var.PROMPT_VCS_STATUS_TAG]
+variable = "PROMPT_VCS_STATUS_TAG"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+[env_var.PROMPT_VCS_STATUS_WORKDIR]
+variable = "PROMPT_VCS_STATUS_WORKDIR"
+symbol = ""
+format = "([$symbol$env_value]() )"
+
+
+[git_branch]
+disabled = true
+format = "[$branch]($style) "
+style = "bright-black"
+
+[git_status]
+disabled = true
+format = "[[($conflicted$untracked$modified$staged$renamed$deleted)](218)($ahead_behind$stashed)]($style)"
+# format = "> ${staged}"
+style = "cyan"
+ignore_submodules = true
+
+conflicted = '~${count} '
+ahead = '⇡${count} '
+behind = '⇣${count} '
+diverged = '⇡${ahead_count}⇣${behind_count}'
+up_to_date = ''
+untracked = '?${count} '
+stashed = '*${count} '
+modified = '!${count} '
+staged = '+${count} '
+renamed = 'R${count} '
+deleted = 'D${count} '
+#
+[git_state]
+disabled = true
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[username]
+disabled = false
+style_user = '033'
+style_root = 'black bold'
+format = ' [$user]($style)'
+show_always = true
+
+
+[hostname]
+disabled = false
+ssh_only = false
+format = '[@$hostname]($style)'
+style = '033'
+
+[directory]
+read_only = '∅'
+format = '([$read_only]($read_only_style) )[$path]($style) '
+truncation_length = 0
+#truncation_symbol = '../'
+truncate_to_repo = false
+style = '39'
+
+
+# 
+# 
+# 
+[golang]
+format = "[( $symbol($version))]($style)"
+style = "bright-black"
+
+[nodejs]
+format = "[( $symbol($version))]($style)"
+
+[kubernetes]
+disabled = false
+format = "[( $symbol$context( ($namespace)))]($style)"
+detect_env_vars = ["KUBECONFIG"]
+symbol = "K "
+style = '39 bold'
+
+[python]
+format = "[( $symbol($version))]($style)"
+style = "bright-black"
+

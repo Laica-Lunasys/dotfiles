@@ -1,8 +1,8 @@
 ## Autoload
-autoload -Uz colors; colors
+autoload -Uz colors && colors
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
-autoload -Uz compinit; compinit -C
+autoload -Uz compinit && compinit -C
 
 # Avoid duplicates in path
 typeset -U path PATH
@@ -10,29 +10,23 @@ typeset -U path PATH
 #--------------------------
 # Load external extensions
 #--------------------------
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# Ensure the .zsh_plugins.txt file exists so you can add plugins.
+[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
+
+# Lazy-load antidote from its functions directory.
+fpath=(${ZDOTDIR:-~}/.antidote/functions $fpath)
+autoload -Uz antidote
+
+# Generate a new static file whenever .zsh_plugins.txt is updated.
+if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
 fi
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# load plugins (zinit)
-source $HOME/.zsh/zinit.zsh
+# Source your static plugins file.
+source ${zsh_plugins}.zsh
 
 #---------------------
 # Appearance
@@ -46,6 +40,13 @@ PS1="[%n@%m %~]%# "
 # For multiline prompt support
 #precmd() { precmd() { echo "" } }
 #alias clear="precmd() { precmd() { echo } } && clear"
+function clear() {
+  if (( $+commands[clear] )) && command clear 2>/dev/null; then
+    return
+  fi
+  echoti clear 2>/dev/null
+  print -n -- "\e[H\e[2J\e[3J"
+}
 
 #----------------------
 # Keybind
@@ -114,12 +115,12 @@ if [ -e $PROFILE_DIR ]; then
 fi
 source $HOME/.zsh/alias.zsh
 source $HOME/.zsh/util.zsh
+source $HOME/.zsh/wsl.zsh
 
 # fzf: Optimize completion
 [ -f ~/.fzf.zsh ] && \
     export PATH="$PATH:$HOME/.fzf/bin" && \
     source <(~/.fzf/bin/fzf --zsh)
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#export POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
-[[ ! -f ~/.p10k.zsh  ]] || source ~/.p10k.zsh && source $HOME/.zsh/p10k.zsh
+[[ $(which starship) ]] && eval "$(starship init zsh)"
+source $HOME/.zsh/git.zsh

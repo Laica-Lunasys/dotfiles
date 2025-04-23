@@ -1,18 +1,38 @@
 #!/usr/bin/env bash
 set -e
 
-paths=$(/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -c 'echo $env:PATH' | sed -e 's/\;/\n/g')
+is_wsl=false
+if [ -e /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+    is_wsl=true
+else
+    exit 0
+fi
 
-mkdir -p $HOME/wsl/bin
+bindir="$HOME/.local/share/wsl-support/bin"
 
-IFS=$'\n'
-for p in $paths; do
-    linux_path=$(wslpath $p)
+if [ "$1" == "install" ]; then
+    paths=$(sh -c "cd /mnt/c; /mnt/c/Windows/System32/cmd.exe /c 'echo %PATH%' | sed -e 's/\;/\n/g'")
 
-    if [ -e $linux_path ]; then
-        for f in $(find $linux_path -mindepth 1 -maxdepth 1 -type f -name '*.exe'); do
-            echo $f
-            ln -sf $f $HOME/wsl/bin/$(basename $f)
-        done
+    if [ -e $bindir ]; then
+        rm -rf $bindir
     fi
-done
+
+    mkdir -p $bindir
+
+    IFS=$'\n'
+    for p in $paths; do
+        if [ $p != "" ]; then
+            linux_path=$(wslpath $p)
+
+            if [ -e $linux_path ]; then
+                for f in $(find $linux_path -mindepth 1 -maxdepth 1 -type f \( -name '*.exe' -o ! -name '*.*' \)); do
+                    ln -sfv $f $bindir/$(basename $f)
+                done
+            fi
+        fi
+    done
+fi
+
+if [ "$1" == "clean" ]; then
+    rm -rf $bindir
+fi

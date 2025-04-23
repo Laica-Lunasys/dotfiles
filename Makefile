@@ -8,8 +8,12 @@ install: ## Install dotfiles
 
 clean: ## Remove dotfiles
 	@bash $(PWD)/init.sh clean
+	@bash $(PWD)/setup/wsl.sh clean
 
 reinstall: clean install ## Reinstall dotfiles Environment
+
+wsl-paths: ## Extract WSL paths
+	@bash $(PWD)/setup/wsl.sh install
 
 help: ## Show help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \

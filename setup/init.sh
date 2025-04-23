@@ -8,23 +8,20 @@ _TASK=$(printf "\e[1;34m::\e[m")
 _WARN=$(printf "\e[1;33m!!\e[m")
 _ERROR=$(printf "\e[1;31m!!\e[m")
 
-echo "$_TASK Setup fzf..."
 if [ ! -d ~/.fzf ]; then
+    echo "$_TASK Setup fzf..."
     git clone https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --all --no-update-rc --no-bash --no-zsh --no-fish
 fi
 
-echo "$_TASK Setup zinit..."
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-if [ ! -d $(dirname $ZINIT_HOME) ]; then
-    mkdir -p "$(dirname $ZINIT_HOME)"
-    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-    bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+if [ ! -d ${ZDOTDIR:-$HOME}/.antidote ]; then
+    echo "$_TASH Setup antidote..."
+    git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
     zsh -c "source ~/.zshrc && exit 0"
 fi
 
-echo "$_TASK Setup tpm..."
 if [ ! -d ~/.tmux/plugins/tpm ]; then
+    echo "$_TASK Setup tpm..."
     mkdir -p ~/.tmux/plugins/tpm
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
