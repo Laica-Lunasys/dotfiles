@@ -78,6 +78,7 @@ _clean() {
 
     echo "$_TASK Removing zsh plugins..."
     rm -rf $HOME/.local/share/zinit
+    rm -rf $HOME/.starship
     rm -rf $HOME/.antigen
     rm -rf $HOME/.antidote
 

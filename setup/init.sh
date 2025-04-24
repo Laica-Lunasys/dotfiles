@@ -26,6 +26,12 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+if [ ! -d ${HOME}/.starship ]; then
+    echo "$_TASK Setup starship..."
+    mkdir -p ${HOME}/.starship/bin
+    curl -sS https://starship.rs/install.sh | sh -s -- -y --bin-dir ${HOME}/.starship/bin
+fi
+
 echo "$_TASK Setup vim-plug..."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

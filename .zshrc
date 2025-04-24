@@ -122,5 +122,6 @@ source $HOME/.zsh/wsl.zsh
     export PATH="$PATH:$HOME/.fzf/bin" && \
     source <(~/.fzf/bin/fzf --zsh)
 
+export PATH="$PATH:$HOME/.starship/bin"
 [[ $(which starship) ]] && eval "$(starship init zsh)"
 source $HOME/.zsh/git.zsh
