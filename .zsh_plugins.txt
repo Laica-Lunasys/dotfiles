@@ -1,0 +1,14 @@
+getantidote/use-omz        # handle OMZ dependencies
+ohmyzsh/ohmyzsh path:lib   # load OMZ's library
+
+# Syntax
+zdharma-continuum/fast-syntax-highlighting
+#zsh-users/zsh-syntax-highlighting
+
+# Others
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search
+
+# Gitstatus
+romkatv/gitstatus
