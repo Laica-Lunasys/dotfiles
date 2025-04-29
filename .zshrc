@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ## Autoload
 autoload -Uz colors && colors
 autoload -Uz vcs_info
@@ -77,7 +84,7 @@ setopt list_types
 setopt auto_menu
 setopt auto_param_keys
 setopt interactive_comments
-#setopt magic_equal_subst
+setopt magic_equal_subst
 
 setopt complete_in_word
 setopt always_last_prompt
@@ -102,9 +109,6 @@ HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# Disable Auto Title (for tmux)
-DISABLE_AUTO_TITLE=false
-
 #---------------------
 # Import settings
 #---------------------
@@ -123,6 +127,10 @@ source $HOME/.zsh/wsl.zsh
     source <(~/.fzf/bin/fzf --zsh)
 
 export PATH="$PATH:$HOME/.starship/bin"
+export PATH="$PATH:$HOME/.local/bin"
 #[[ $(which starship) ]] && eval "$(starship init zsh)"
 eval "$(sheldon source)"
 # source $HOME/.zsh/git.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh && source ~/.zsh/p10k.zsh
