@@ -14,10 +14,17 @@ if [ ! -d ~/.fzf ]; then
     ~/.fzf/install --all --no-update-rc --no-bash --no-zsh --no-fish
 fi
 
-if [ ! -d ${ZDOTDIR:-$HOME}/.antidote ]; then
-    echo "$_TASH Setup antidote..."
-    git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
-    zsh -c "source ~/.zshrc && exit 0"
+#if [ ! -d ${ZDOTDIR:-$HOME}/.antidote ]; then
+#    echo "$_TASH Setup antidote..."
+#    git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
+#    zsh -c "source ~/.zshrc && exit 0"
+#fi
+
+if [ ! -e ${HOME}/.local/bin/sheldon ]; then
+    echo "$_TASK Setup sheldon..."
+    mkdir -p ${HOME}/.local/bin
+    curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+        | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then

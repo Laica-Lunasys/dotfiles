@@ -55,13 +55,18 @@ _check() {
     echo "$_TASK All check passed"
 }
 
-# Install - Install dotfiles
-_install() {
+# Extract - Extract dotfiles
+_extract() {
     echo "$_TASK Extracting..."
     mkdir -p $HOME/.config
     for f in $(_search); do
         ln -snfv $PWD/$f $HOME/$f
     done
+}
+
+# Install - Install dotfiles
+_install() {
+    _extract
     bash $PWD/setup/init.sh
 }
 
@@ -78,6 +83,7 @@ _clean() {
 
     echo "$_TASK Removing zsh plugins..."
     rm -rf $HOME/.local/share/zinit
+    rm -rf $HOME/.local/bin/sheldon
     rm -rf $HOME/.starship
     rm -rf $HOME/.antigen
     rm -rf $HOME/.antidote
@@ -96,6 +102,9 @@ if [ "$1" = "list" ]; then
     _list
 elif [ "$1" = "check" ]; then
     _check
+elif [ "$1" = "extract" ]; then
+    _check
+    _extract
 elif [ "$1" = "install" ]; then
     _check
     _install

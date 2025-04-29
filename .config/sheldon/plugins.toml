@@ -1,0 +1,60 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+shell = "zsh"
+
+# Deferred loading
+# ref: https://sheldon.cli.rs/Examples.html#deferred-loading-of-plugins-in-zsh
+[templates]
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+
+# Core
+[plugins.zsh-defer]
+github = 'romkatv/zsh-defer'
+apply = ['source']
+
+# Syntax
+[plugins.zsh-syntax-highlighting]
+github = 'zsh-users/zsh-syntax-highlighting'
+apply = ['defer']
+
+#[plugins.gitstatus]
+#github = 'romkatv/gitstatus'
+#apply = ['defer']
+#
+#[plugins.gitstatus-local]
+#local = "~/.zsh"
+#use = ["git.zsh"]
+#apply = ['defer']
+
+# Others
+[plugins.zsh-autosuggestions]
+github = 'zsh-users/zsh-autosuggestions'
+apply = ['defer']
+
+[plugins.zsh-completions]
+github = 'zsh-users/zsh-completions'
+apply = ['defer']
+
+[plugins.zsh-history-substring-search]
+github = 'zsh-users/zsh-history-substring-search'
+apply = ['defer']
+
+# Plugins
+[plugins.mise]
+inline = 'eval "$(mise activate zsh)"'
+
+[plugins.powerlevel10k]
+github = "romkatv/powerlevel10k"
+
+#[plugins.starship]
+#inline = 'eval "$(starship init zsh)"'
