@@ -117,7 +117,6 @@ PROFILE_DIR="$HOME/.zsh/profile/$OS.zsh"
 if [ -e $PROFILE_DIR ]; then
     source $PROFILE_DIR
 fi
-source $HOME/.zsh/alias.zsh
 source $HOME/.zsh/util.zsh
 source $HOME/.zsh/wsl.zsh
 
