@@ -6,14 +6,7 @@ add_newline = false
 format = """\
 $username$hostname \
 $directory\
-${env_var.PROMPT_VCS_STATUS_LOCAL_BRANCH}\
-${env_var.PROMPT_VCS_STATUS_COMMITS_BEHIND}${env_var.PROMPT_VCS_STATUS_COMMITS_AHEAD}\
-${env_var.PROMPT_VCS_STATUS_PUSH_COMMITS_BEHIND}${env_var.PROMPT_VCS_STATUS_PUSH_COMMITS_AHEAD}\
-${env_var.PROMPT_VCS_STATUS_STASHES}\
-${env_var.PROMPT_VCS_STATUS_NUM_CONFLICTED}\
-${env_var.PROMPT_VCS_STATUS_NUM_STAGED}\
-${env_var.PROMPT_VCS_STATUS_NUM_UNSTAGED}\
-${env_var.PROMPT_VCS_STATUS_NUM_UNTRACKED}\
+${env_var.PROMPT_VCS_STATUS}\
 $cmd_duration\
 $line_break\
 $character\
@@ -105,6 +98,10 @@ $status\
 # variable = "PROMPT_VCS_STATUS_ACTION"
 # symbol = ""
 # format = "([$symbol$env_value](76) )"
+
+[env_var.PROMPT_VCS_STATUS]
+variable = "PROMPT_VCS_STATUS"
+format = "([$env_value]() )"
 
 [env_var.PROMPT_VCS_STATUS_COMMIT]
 variable = "PROMPT_VCS_STATUS_COMMIT"

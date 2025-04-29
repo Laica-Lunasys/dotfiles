@@ -10,23 +10,23 @@ typeset -U path PATH
 #--------------------------
 # Load external extensions
 #--------------------------
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
-
-# Ensure the .zsh_plugins.txt file exists so you can add plugins.
-[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
-
-# Lazy-load antidote from its functions directory.
-fpath=(${ZDOTDIR:-~}/.antidote/functions $fpath)
-autoload -Uz antidote
-
-# Generate a new static file whenever .zsh_plugins.txt is updated.
-if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
-  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
-fi
-
-# Source your static plugins file.
-source ${zsh_plugins}.zsh
+#source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+#zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
+#
+## Ensure the .zsh_plugins.txt file exists so you can add plugins.
+#[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
+#
+## Lazy-load antidote from its functions directory.
+#fpath=(${ZDOTDIR:-~}/.antidote/functions $fpath)
+#autoload -Uz antidote
+#
+## Generate a new static file whenever .zsh_plugins.txt is updated.
+#if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+#  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+#fi
+#
+## Source your static plugins file.
+#source ${zsh_plugins}.zsh
 
 #---------------------
 # Appearance
@@ -40,13 +40,13 @@ PS1="[%n@%m %~]%# "
 # For multiline prompt support
 #precmd() { precmd() { echo "" } }
 #alias clear="precmd() { precmd() { echo } } && clear"
-function clear() {
-  if (( $+commands[clear] )) && command clear 2>/dev/null; then
-    return
-  fi
-  echoti clear 2>/dev/null
-  print -n -- "\e[H\e[2J\e[3J"
-}
+#function clear() {
+#  if (( $+commands[clear] )) && command clear 2>/dev/null; then
+#    return
+#  fi
+#  echoti clear 2>/dev/null
+#  print -n -- "\e[H\e[2J\e[3J"
+#}
 
 #----------------------
 # Keybind
@@ -77,7 +77,7 @@ setopt list_types
 setopt auto_menu
 setopt auto_param_keys
 setopt interactive_comments
-setopt magic_equal_subst
+#setopt magic_equal_subst
 
 setopt complete_in_word
 setopt always_last_prompt
@@ -123,5 +123,6 @@ source $HOME/.zsh/wsl.zsh
     source <(~/.fzf/bin/fzf --zsh)
 
 export PATH="$PATH:$HOME/.starship/bin"
-[[ $(which starship) ]] && eval "$(starship init zsh)"
-source $HOME/.zsh/git.zsh
+#[[ $(which starship) ]] && eval "$(starship init zsh)"
+eval "$(sheldon source)"
+# source $HOME/.zsh/git.zsh

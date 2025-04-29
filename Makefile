@@ -6,6 +6,9 @@ list: ## Show dotfiles in this repo
 install: ## Install dotfiles
 	@bash $(PWD)/init.sh install
 
+extract: ## Extract only
+	@bash $(PWD)/init.sh extract
+
 clean: ## Remove dotfiles
 	@bash $(PWD)/init.sh clean
 	@bash $(PWD)/setup/wsl.sh clean
