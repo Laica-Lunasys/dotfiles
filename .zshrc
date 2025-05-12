@@ -118,6 +118,8 @@ if [ -e $PROFILE_DIR ]; then
     source $PROFILE_DIR
 fi
 source $HOME/.zsh/util.zsh
+source $HOME/.zsh/omz/*.zsh
+
 source $HOME/.zsh/wsl.zsh
 
 # fzf: Optimize completion
