@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest
 
 ARG USERNAME=relias
 ENV TERM xterm-256color
