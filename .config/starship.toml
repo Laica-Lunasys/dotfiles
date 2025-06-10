@@ -6,7 +6,16 @@ add_newline = false
 format = """\
 $username$hostname \
 $directory\
-${env_var.PROMPT_VCS_STATUS}\
+${env_var.VCS_STATUS_COMMITS_BEHIND}\
+${env_var.VCS_STATUS_COMMITS_AHEAD}\
+${env_var.VCS_STATUS_PUSH_COMMITS_BEHIND}\
+${env_var.VCS_STATUS_PUSH_COMMITS_AHEAD}\
+${env_var.VCS_STATUS_STASHED}\
+${env_var.VCS_STATUS_ACTION}\
+${env_var.VCS_STATUS_NUM_CONFLICTED}\
+${env_var.VCS_STATUS_NUM_STAGED}\
+${env_var.VCS_STATUS_NUM_UNSTAGED}\
+${env_var.VCS_STATUS_NUM_UNTRACKED}\
 $cmd_duration\
 $line_break\
 $character\
@@ -94,167 +103,167 @@ $status\
 #vimcmd_symbol = "[❮](green)"
 
 
-# [env_var.PROMPT_VCS_STATUS_ACTION]
-# variable = "PROMPT_VCS_STATUS_ACTION"
+# [env_var.VCS_STATUS_ACTION]
+# variable = "VCS_STATUS_ACTION"
 # symbol = ""
 # format = "([$symbol$env_value](76) )"
 
-[env_var.PROMPT_VCS_STATUS]
-variable = "PROMPT_VCS_STATUS"
+[env_var.VCS_STATUS]
+variable = "VCS_STATUS"
 format = "([$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_COMMIT]
-variable = "PROMPT_VCS_STATUS_COMMIT"
+[env_var.VCS_STATUS_COMMIT]
+variable = "VCS_STATUS_COMMIT"
 symbol = "@"
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_COMMITS_AHEAD]
-variable = "PROMPT_VCS_STATUS_COMMITS_AHEAD"
+[env_var.VCS_STATUS_COMMITS_AHEAD]
+variable = "VCS_STATUS_COMMITS_AHEAD"
 symbol = "⇡"
 format = "([$symbol$env_value](76) )"
 
-[env_var.PROMPT_VCS_STATUS_COMMITS_BEHIND]
-variable = "PROMPT_VCS_STATUS_COMMITS_BEHIND"
+[env_var.VCS_STATUS_COMMITS_BEHIND]
+variable = "VCS_STATUS_COMMITS_BEHIND"
 symbol = "⇣"
 format = "([$symbol$env_value](76) )"
 
-# [env_var.PROMPT_VCS_STATUS_COMMIT_ENCODING]
-# variable = "PROMPT_VCS_STATUS_COMMIT_ENCODING"
+# [env_var.VCS_STATUS_COMMIT_ENCODING]
+# variable = "VCS_STATUS_COMMIT_ENCODING"
 # symbol = ""
 # format = "([$symbol$env_value]() )"
 
-# [env_var.PROMPT_VCS_STATUS_COMMIT_SUMMARY]
-# variable = "PROMPT_VCS_STATUS_COMMIT_SUMMARY"
+# [env_var.VCS_STATUS_COMMIT_SUMMARY]
+# variable = "VCS_STATUS_COMMIT_SUMMARY"
 # symbol = ""
 # format = "([$symbol$env_value]() )"
 
-# [env_var.PROMPT_VCS_STATUS_HAS_CONFLICTED]
-# variable = "PROMPT_VCS_STATUS_HAS_CONFLICTED"
+# [env_var.VCS_STATUS_HAS_CONFLICTED]
+# variable = "VCS_STATUS_HAS_CONFLICTED"
 # symbol = ""
 # format = "([$symbol$env_value](196) )"
 
-# [env_var.PROMPT_VCS_STATUS_HAS_STAGED]
-# variable = "PROMPT_VCS_STATUS_HAS_STAGED"
+# [env_var.VCS_STATUS_HAS_STAGED]
+# variable = "VCS_STATUS_HAS_STAGED"
 # symbol = ""
 # format = "([$symbol$env_value]() )"
 
-# [env_var.PROMPT_VCS_STATUS_HAS_UNSTAGED]
-# variable = "PROMPT_VCS_STATUS_HAS_UNSTAGED"
+# [env_var.VCS_STATUS_HAS_UNSTAGED]
+# variable = "VCS_STATUS_HAS_UNSTAGED"
 # symbol = ""
 # format = "([$symbol$env_value]() )"
 
-# [env_var.PROMPT_VCS_STATUS_HAS_UNTRACKED]
-# variable = "PROMPT_VCS_STATUS_HAS_UNTRACKED"
+# [env_var.VCS_STATUS_HAS_UNTRACKED]
+# variable = "VCS_STATUS_HAS_UNTRACKED"
 # symbol = ""
 # format = "([$symbol$env_value]() )"
 
-# [env_var.PROMPT_VCS_STATUS_INDEX_SIZE]
-# variable = "PROMPT_VCS_STATUS_INDEX_SIZE"
+# [env_var.VCS_STATUS_INDEX_SIZE]
+# variable = "VCS_STATUS_INDEX_SIZE"
 # symbol = ""
 # format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_LOCAL_BRANCH]
-variable = "PROMPT_VCS_STATUS_LOCAL_BRANCH"
+[env_var.VCS_STATUS_LOCAL_BRANCH]
+variable = "VCS_STATUS_LOCAL_BRANCH"
 symbol = ""
 format = "([$symbol$env_value](76) )"
 
-[env_var.PROMPT_VCS_STATUS_NUM_ASSUME_UNCHANGED]
-variable = "PROMPT_VCS_STATUS_NUM_ASSUME_UNCHANGED"
+[env_var.VCS_STATUS_NUM_ASSUME_UNCHANGED]
+variable = "VCS_STATUS_NUM_ASSUME_UNCHANGED"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_NUM_CONFLICTED]
-variable = "PROMPT_VCS_STATUS_NUM_CONFLICTED"
+[env_var.VCS_STATUS_NUM_CONFLICTED]
+variable = "VCS_STATUS_NUM_CONFLICTED"
 symbol = "~"
 format = "([$symbol$env_value](196) )"
 
-[env_var.PROMPT_VCS_STATUS_NUM_STAGED]
-variable = "PROMPT_VCS_STATUS_NUM_STAGED"
+[env_var.VCS_STATUS_NUM_STAGED]
+variable = "VCS_STATUS_NUM_STAGED"
 symbol = "+"
 format = "([$symbol$env_value](196) )"
 
-[env_var.PROMPT_VCS_STATUS_NUM_UNSTAGED]
-variable = "PROMPT_VCS_STATUS_NUM_UNSTAGED"
+[env_var.VCS_STATUS_NUM_UNSTAGED]
+variable = "VCS_STATUS_NUM_UNSTAGED"
 symbol = "!"
 format = "([$symbol$env_value](178) )"
 
-[env_var.PROMPT_VCS_STATUS_NUM_SKIP_WORKTREE]
-variable = "PROMPT_VCS_STATUS_NUM_SKIP_WORKTREE"
+[env_var.VCS_STATUS_NUM_SKIP_WORKTREE]
+variable = "VCS_STATUS_NUM_SKIP_WORKTREE"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_NUM_STAGED_NEW]
-variable = "PROMPT_VCS_STATUS_NUM_STAGED_NEW"
+[env_var.VCS_STATUS_NUM_STAGED_NEW]
+variable = "VCS_STATUS_NUM_STAGED_NEW"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_NUM_STAGED_DELETED]
-variable = "PROMPT_VCS_STATUS_NUM_STAGED_DELETED"
+[env_var.VCS_STATUS_NUM_STAGED_DELETED]
+variable = "VCS_STATUS_NUM_STAGED_DELETED"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_NUM_UNSTAGED_DELETED]
-variable = "PROMPT_VCS_STATUS_NUM_UNSTAGED_DELETED"
+[env_var.VCS_STATUS_NUM_UNSTAGED_DELETED]
+variable = "VCS_STATUS_NUM_UNSTAGED_DELETED"
 symbol = "!"
 format = "([$symbol$env_value](196) )"
 
-[env_var.PROMPT_VCS_STATUS_NUM_UNTRACKED]
-variable = "PROMPT_VCS_STATUS_NUM_UNTRACKED"
+[env_var.VCS_STATUS_NUM_UNTRACKED]
+variable = "VCS_STATUS_NUM_UNTRACKED"
 symbol = "?"
 format = "([$symbol$env_value](39) )"
 
-[env_var.PROMPT_VCS_STATUS_PUSH_COMMITS_AHEAD]
-variable = "PROMPT_VCS_STATUS_PUSH_COMMITS_AHEAD"
+[env_var.VCS_STATUS_PUSH_COMMITS_AHEAD]
+variable = "VCS_STATUS_PUSH_COMMITS_AHEAD"
 symbol = "⇢"
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_PUSH_COMMITS_BEHIND]
-variable = "PROMPT_VCS_STATUS_PUSH_COMMITS_BEHIND"
+[env_var.VCS_STATUS_PUSH_COMMITS_BEHIND]
+variable = "VCS_STATUS_PUSH_COMMITS_BEHIND"
 symbol = "⇠"
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_PUSH_REMOTE_NAME]
-variable = "PROMPT_VCS_STATUS_PUSH_REMOTE_NAME"
+[env_var.VCS_STATUS_PUSH_REMOTE_NAME]
+variable = "VCS_STATUS_PUSH_REMOTE_NAME"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_PUSH_REMOTE_URL]
-variable = "PROMPT_VCS_STATUS_PUSH_REMOTE_URL"
+[env_var.VCS_STATUS_PUSH_REMOTE_URL]
+variable = "VCS_STATUS_PUSH_REMOTE_URL"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_REMOTE_BRANCH]
-variable = "PROMPT_VCS_STATUS_REMOTE_BRANCH"
+[env_var.VCS_STATUS_REMOTE_BRANCH]
+variable = "VCS_STATUS_REMOTE_BRANCH"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_REMOTE_NAME]
-variable = "PROMPT_VCS_STATUS_REMOTE_NAME"
+[env_var.VCS_STATUS_REMOTE_NAME]
+variable = "VCS_STATUS_REMOTE_NAME"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_REMOTE_URL]
-variable = "PROMPT_VCS_STATUS_REMOTE_URL"
+[env_var.VCS_STATUS_REMOTE_URL]
+variable = "VCS_STATUS_REMOTE_URL"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_RESULT]
-variable = "PROMPT_VCS_STATUS_RESULT"
+[env_var.VCS_STATUS_RESULT]
+variable = "VCS_STATUS_RESULT"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_STASHES]
-variable = "PROMPT_VCS_STATUS_STASHES"
+[env_var.VCS_STATUS_STASHES]
+variable = "VCS_STATUS_STASHES"
 symbol = "*"
 format = "([$symbol$env_value](76) )"
 
-[env_var.PROMPT_VCS_STATUS_TAG]
-variable = "PROMPT_VCS_STATUS_TAG"
+[env_var.VCS_STATUS_TAG]
+variable = "VCS_STATUS_TAG"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
-[env_var.PROMPT_VCS_STATUS_WORKDIR]
-variable = "PROMPT_VCS_STATUS_WORKDIR"
+[env_var.VCS_STATUS_WORKDIR]
+variable = "VCS_STATUS_WORKDIR"
 symbol = ""
 format = "([$symbol$env_value]() )"
 
