@@ -59,20 +59,7 @@ PS1="[%n@%m %~]%# "
 # Keybind
 #----------------------
 bindkey -e
-bindkey "^?"    backward-delete-char
-bindkey "^H"    backward-delete-char
-bindkey "^[[3~" delete-char
-
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[4~" end-of-line
-
-bindkey '^[[Z' reverse-menu-complete
-
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
+source $HOME/.zsh/keybinds.zsh
 
 #----------------
 # Completion
@@ -118,7 +105,8 @@ if [ -e $PROFILE_DIR ]; then
     source $PROFILE_DIR
 fi
 source $HOME/.zsh/util.zsh
-source $HOME/.zsh/omz/*.zsh
+source $HOME/.zsh/omz/title.zsh
+source $HOME/.zsh/omz/directory.zsh
 
 source $HOME/.zsh/wsl.zsh
 
