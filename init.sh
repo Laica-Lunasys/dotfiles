@@ -12,6 +12,7 @@ _search() {
     find . -mindepth 1 -maxdepth 1 \
         -name '.*' \
         -and -not -name '.DS_Store' \
+        -and -not -name '.dockerignore' \
         -and -not -name '.git' \
         -and -not -name '.gitmodules' \
         -and -not -name '.gitignore' \
