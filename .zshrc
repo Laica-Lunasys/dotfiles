@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ## Autoload
 autoload -Uz colors && colors
 autoload -Uz vcs_info
@@ -14,27 +7,6 @@ autoload -Uz compinit && compinit -C
 # Avoid duplicates in path
 typeset -U path PATH
 
-#--------------------------
-# Load external extensions
-#--------------------------
-#source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-#zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
-#
-## Ensure the .zsh_plugins.txt file exists so you can add plugins.
-#[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
-#
-## Lazy-load antidote from its functions directory.
-#fpath=(${ZDOTDIR:-~}/.antidote/functions $fpath)
-#autoload -Uz antidote
-#
-## Generate a new static file whenever .zsh_plugins.txt is updated.
-#if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
-#  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
-#fi
-#
-## Source your static plugins file.
-#source ${zsh_plugins}.zsh
-
 #---------------------
 # Appearance
 #---------------------
@@ -42,18 +14,37 @@ typeset -U path PATH
 source $HOME/.zsh/color.zsh
 
 # Prompt (fallback)
-PS1="[%n@%m %~]%# "
+# PS1="[%n@%m %~]%# "
 
+#-------------------------------
 # For multiline prompt support
-#precmd() { precmd() { echo "" } }
-#alias clear="precmd() { precmd() { echo } } && clear"
-#function clear() {
-#  if (( $+commands[clear] )) && command clear 2>/dev/null; then
-#    return
-#  fi
-#  echoti clear 2>/dev/null
-#  print -n -- "\e[H\e[2J\e[3J"
-#}
+#-------------------------------
+# clear command for non-ncurses environment
+function clear() {
+    if (( $+commands[clear] )) && command clear 2>/dev/null; then
+        return
+    fi
+    echoti clear 2>/dev/null
+    print -n -- "\e[H\e[2J\e[3J"
+}
+
+function __run_print_next_time() {
+    if [ "${__do_not_print_next_time}" = "YES" ]; then
+        unset __do_not_print_next_time
+    else
+        print
+    fi
+}
+
+# Draw newline before every prompt rendering
+# + Don't print newline at first prompt rendering
+# (function activation only)
+__do_not_print_next_time="YES"
+add-zsh-hook precmd __run_print_next_time
+
+# clear console buffers
+# + Don't print newline in next prompt rendering
+alias clear="__do_not_print_next_time='YES' && clear"
 
 #----------------------
 # Keybind
@@ -72,11 +63,14 @@ setopt auto_menu
 setopt auto_param_keys
 setopt interactive_comments
 setopt magic_equal_subst
+setopt share_history
 
 setopt complete_in_word
 setopt always_last_prompt
 
 setopt nonomatch
+
+setopt hist_ignore_space
 
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
 zstyle ':completion:*' verbose yes
@@ -84,9 +78,12 @@ zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
 zstyle ':completion:*:options' description 'yes'
 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*' use-cache false
+zstyle ':completion:*' use-cache true
+
+# zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 #-----------------------
 # Misc Settings
@@ -108,7 +105,9 @@ source $HOME/.zsh/util.zsh
 source $HOME/.zsh/omz/title.zsh
 source $HOME/.zsh/omz/directory.zsh
 
-source $HOME/.zsh/wsl.zsh
+if [ ! -z $WSLENV ]; then
+    source $HOME/.zsh/wsl.zsh
+fi
 
 # fzf: Optimize completion
 [ -f ~/.fzf.zsh ] && \
@@ -117,9 +116,8 @@ source $HOME/.zsh/wsl.zsh
 
 export PATH="$PATH:$HOME/.starship/bin"
 export PATH="$PATH:$HOME/.local/bin"
-#[[ $(which starship) ]] && eval "$(starship init zsh)"
-eval "$(sheldon source)"
-# source $HOME/.zsh/git.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh && source ~/.zsh/p10k.zsh
+# Experimental (do not enable)
+# source $HOME/.zsh/plugins/cmd-hook.zsh
+
+eval "$(sheldon source)"

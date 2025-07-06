@@ -27,14 +27,14 @@ apply = ['source']
 github = 'zsh-users/zsh-syntax-highlighting'
 apply = ['defer']
 
-#[plugins.gitstatus]
-#github = 'romkatv/gitstatus'
-#apply = ['defer']
-#
-#[plugins.gitstatus-local]
-#local = "~/.zsh"
-#use = ["git.zsh"]
-#apply = ['defer']
+[plugins.gitstatus]
+github = 'romkatv/gitstatus'
+apply = ['defer']
+
+[plugins.gitstatus-local]
+local = "~/.zsh/plugins"
+use = ["gitstatus.zsh"]
+apply = ['defer']
 
 # Others
 [plugins.zsh-autosuggestions]
@@ -45,16 +45,8 @@ apply = ['defer']
 github = 'zsh-users/zsh-completions'
 apply = ['defer']
 
-[plugins.zsh-history-substring-search]
-github = 'zsh-users/zsh-history-substring-search'
-apply = ['defer']
+# [plugins.powerlevel10k]
+# github = "romkatv/powerlevel10k"
 
-# Plugins
-[plugins.mise]
-inline = 'eval "$(mise activate zsh)"'
-
-[plugins.powerlevel10k]
-github = "romkatv/powerlevel10k"
-
-#[plugins.starship]
-#inline = 'eval "$(starship init zsh)"'
+[plugins.starship]
+inline = 'eval "$(starship init zsh)"'

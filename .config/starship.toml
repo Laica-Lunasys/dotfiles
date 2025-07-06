@@ -4,97 +4,84 @@
 add_newline = false
 
 format = """\
-$username$hostname \
-$directory\
-${env_var.VCS_STATUS_COMMITS_BEHIND}\
-${env_var.VCS_STATUS_COMMITS_AHEAD}\
-${env_var.VCS_STATUS_PUSH_COMMITS_BEHIND}\
-${env_var.VCS_STATUS_PUSH_COMMITS_AHEAD}\
-${env_var.VCS_STATUS_STASHED}\
-${env_var.VCS_STATUS_ACTION}\
-${env_var.VCS_STATUS_NUM_CONFLICTED}\
-${env_var.VCS_STATUS_NUM_STAGED}\
-${env_var.VCS_STATUS_NUM_UNSTAGED}\
-${env_var.VCS_STATUS_NUM_UNTRACKED}\
-$cmd_duration\
-$line_break\
+( $username$hostname )(${directory} )${env_var.PROMPT_VCS_STATUS}$line_break\
 $character\
 """
 
 right_format = """
-$shlvl\
-$singularity\
-$kubernetes\
-$vcsh\
-$fossil_branch\
-$fossil_metrics\
-$hg_branch\
-$pijul_channel\
-$docker_context\
-$package\
-$c\
-$cmake\
-$cobol\
-$daml\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$fennel\
-$gleam\
-$golang\
-$guix_shell\
-$haskell\
-$haxe\
-$helm\
-$java\
-$julia\
-$kotlin\
-$gradle\
-$lua\
-$nim\
-$nodejs\
-$ocaml\
-$opa\
-$perl\
-$php\
-$pulumi\
-$purescript\
-$python\
-$quarto\
-$raku\
-$rlang\
-$red\
-$ruby\
-$rust\
-$scala\
-$solidity\
-$swift\
-$terraform\
-$typst\
-$vlang\
-$vagrant\
-$zig\
-$buf\
-$nix_shell\
-$conda\
-$meson\
-$spack\
-$memory_usage\
-$aws\
-$openstack\
-$azure\
-$nats\
-$direnv\
-$crystal\
-$sudo\
-$cmd_duration\
-$line_break\
-$jobs\
-$battery\
-$status\
+( ${env_var.DEBUG_CMD_HOOK})\
+( $shlvl)\
+( $singularity)\
+( $vcsh)\
+( $fossil_branch)\
+( $fossil_metrics)\
+( $hg_branch)\
+( $pijul_channel)\
+( $kubernetes)\
+( $docker_context)\
+( $package)\
+( $c)\
+( $cmake)\
+( $cobol)\
+( $daml)\
+( $dart)\
+( $deno)\
+( $dotnet)\
+( $elixir)\
+( $elm)\
+( $erlang)\
+( $fennel)\
+( $gleam)\
+( $golang)\
+( $guix_shell)\
+( $haskell)\
+( $haxe)\
+( $helm)\
+( $java)\
+( $julia)\
+( $kotlin)\
+( $gradle)\
+( $lua)\
+( $nim)\
+( $nodejs)\
+( $ocaml)\
+( $opa)\
+( $perl)\
+( $php)\
+( $pulumi)\
+( $purescript)\
+( $python)\
+( $quarto)\
+( $raku)\
+( $rlang)\
+( $red)\
+( $ruby)\
+( $rust)\
+( $scala)\
+( $solidity)\
+( $swift)\
+( $terraform)\
+( $typst)\
+( $vlang)\
+( $vagrant)\
+( $zig)\
+( $buf)\
+( $nix_shell)\
+( $conda)\
+( $meson)\
+( $spack)\
+( $memory_usage)\
+( $aws)\
+( $gcloud)\
+( $openstack)\
+( $azure)\
+( $nats)\
+( $direnv)\
+( $crystal)\
+( $sudo)\
+( $cmd_duration)\
+( $jobs)\
+( $status)\
 """
 
 # [character]
@@ -102,171 +89,19 @@ $status\
 #error_symbol = "[❯](red)"
 #vimcmd_symbol = "[❮](green)"
 
+[env_var.DEBUG_CMD_HOOK]
+disabled = true
+variable = "__hook_cmd_kubectl"
+format = "([$env_value]())"
 
-# [env_var.VCS_STATUS_ACTION]
-# variable = "VCS_STATUS_ACTION"
-# symbol = ""
-# format = "([$symbol$env_value](76) )"
+[env_var.PROMPT_VCS_STATUS]
+variable = "PROMPT_VCS_STATUS"
+format = "([$env_value]())"
 
-[env_var.VCS_STATUS]
-variable = "VCS_STATUS"
-format = "([$env_value]() )"
-
-[env_var.VCS_STATUS_COMMIT]
-variable = "VCS_STATUS_COMMIT"
-symbol = "@"
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_COMMITS_AHEAD]
-variable = "VCS_STATUS_COMMITS_AHEAD"
-symbol = "⇡"
-format = "([$symbol$env_value](76) )"
-
-[env_var.VCS_STATUS_COMMITS_BEHIND]
-variable = "VCS_STATUS_COMMITS_BEHIND"
-symbol = "⇣"
-format = "([$symbol$env_value](76) )"
-
-# [env_var.VCS_STATUS_COMMIT_ENCODING]
-# variable = "VCS_STATUS_COMMIT_ENCODING"
-# symbol = ""
-# format = "([$symbol$env_value]() )"
-
-# [env_var.VCS_STATUS_COMMIT_SUMMARY]
-# variable = "VCS_STATUS_COMMIT_SUMMARY"
-# symbol = ""
-# format = "([$symbol$env_value]() )"
-
-# [env_var.VCS_STATUS_HAS_CONFLICTED]
-# variable = "VCS_STATUS_HAS_CONFLICTED"
-# symbol = ""
-# format = "([$symbol$env_value](196) )"
-
-# [env_var.VCS_STATUS_HAS_STAGED]
-# variable = "VCS_STATUS_HAS_STAGED"
-# symbol = ""
-# format = "([$symbol$env_value]() )"
-
-# [env_var.VCS_STATUS_HAS_UNSTAGED]
-# variable = "VCS_STATUS_HAS_UNSTAGED"
-# symbol = ""
-# format = "([$symbol$env_value]() )"
-
-# [env_var.VCS_STATUS_HAS_UNTRACKED]
-# variable = "VCS_STATUS_HAS_UNTRACKED"
-# symbol = ""
-# format = "([$symbol$env_value]() )"
-
-# [env_var.VCS_STATUS_INDEX_SIZE]
-# variable = "VCS_STATUS_INDEX_SIZE"
-# symbol = ""
-# format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_LOCAL_BRANCH]
-variable = "VCS_STATUS_LOCAL_BRANCH"
-symbol = ""
-format = "([$symbol$env_value](76) )"
-
-[env_var.VCS_STATUS_NUM_ASSUME_UNCHANGED]
-variable = "VCS_STATUS_NUM_ASSUME_UNCHANGED"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_NUM_CONFLICTED]
-variable = "VCS_STATUS_NUM_CONFLICTED"
-symbol = "~"
-format = "([$symbol$env_value](196) )"
-
-[env_var.VCS_STATUS_NUM_STAGED]
-variable = "VCS_STATUS_NUM_STAGED"
-symbol = "+"
-format = "([$symbol$env_value](196) )"
-
-[env_var.VCS_STATUS_NUM_UNSTAGED]
-variable = "VCS_STATUS_NUM_UNSTAGED"
-symbol = "!"
-format = "([$symbol$env_value](178) )"
-
-[env_var.VCS_STATUS_NUM_SKIP_WORKTREE]
-variable = "VCS_STATUS_NUM_SKIP_WORKTREE"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_NUM_STAGED_NEW]
-variable = "VCS_STATUS_NUM_STAGED_NEW"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_NUM_STAGED_DELETED]
-variable = "VCS_STATUS_NUM_STAGED_DELETED"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_NUM_UNSTAGED_DELETED]
-variable = "VCS_STATUS_NUM_UNSTAGED_DELETED"
-symbol = "!"
-format = "([$symbol$env_value](196) )"
-
-[env_var.VCS_STATUS_NUM_UNTRACKED]
-variable = "VCS_STATUS_NUM_UNTRACKED"
-symbol = "?"
-format = "([$symbol$env_value](39) )"
-
-[env_var.VCS_STATUS_PUSH_COMMITS_AHEAD]
-variable = "VCS_STATUS_PUSH_COMMITS_AHEAD"
-symbol = "⇢"
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_PUSH_COMMITS_BEHIND]
-variable = "VCS_STATUS_PUSH_COMMITS_BEHIND"
-symbol = "⇠"
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_PUSH_REMOTE_NAME]
-variable = "VCS_STATUS_PUSH_REMOTE_NAME"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_PUSH_REMOTE_URL]
-variable = "VCS_STATUS_PUSH_REMOTE_URL"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_REMOTE_BRANCH]
-variable = "VCS_STATUS_REMOTE_BRANCH"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_REMOTE_NAME]
-variable = "VCS_STATUS_REMOTE_NAME"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_REMOTE_URL]
-variable = "VCS_STATUS_REMOTE_URL"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_RESULT]
-variable = "VCS_STATUS_RESULT"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_STASHES]
-variable = "VCS_STATUS_STASHES"
-symbol = "*"
-format = "([$symbol$env_value](76) )"
-
-[env_var.VCS_STATUS_TAG]
-variable = "VCS_STATUS_TAG"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
-[env_var.VCS_STATUS_WORKDIR]
-variable = "VCS_STATUS_WORKDIR"
-symbol = ""
-format = "([$symbol$env_value]() )"
-
+[env_var.PWD]
+variable = "PWD"
+format = "[$env_value]($style) "
+style = '39'
 
 [git_branch]
 disabled = true
@@ -305,7 +140,7 @@ style = "yellow"
 disabled = false
 style_user = '033'
 style_root = 'black bold'
-format = ' [$user]($style)'
+format = '[$user]($style)'
 show_always = true
 
 
@@ -317,31 +152,55 @@ style = '033'
 
 [directory]
 read_only = '∅'
-format = '([$read_only]($read_only_style) )[$path]($style) '
-truncation_length = 0
-#truncation_symbol = '../'
+format = '([$read_only]($read_only_style) )[$path]($style)'
+truncation_length = 3
+truncation_symbol = '../'
 truncate_to_repo = false
 style = '39'
 
-
 # 
-# 
+# Plugins
 # 
 [golang]
-format = "[( $symbol($version))]($style)"
-style = "bright-black"
+format = "[($symbol($version))]($style)"
 
 [nodejs]
-format = "[( $symbol($version))]($style)"
+format = "[($symbol($version))]($style)"
 
 [kubernetes]
 disabled = false
-format = "[( $symbol$context( ($namespace)))]($style)"
-detect_env_vars = ["KUBECONFIG"]
-symbol = "K "
+symbol = "󱃾 "
+format = "[($symbol$context(($namespace)))]($style)"
+detect_env_vars = [
+    "KUBECONFIG"
+]
+# detect_env_vars = [
+#     "__hook_cmd_kubectl",
+#     "__hook_cmd_helm",
+#     "__hook_cmd_kubens",
+#     "__hook_cmd_kubectx",
+#     "__hook_cmd_oc",
+#     "__hook_cmd_istioctl",
+#     "__hook_cmd_kogito",
+#     "__hook_cmd_k9s",
+#     "__hook_cmd_helmfile",
+#     "__hook_cmd_flux",
+#     "__hook_cmd_fluxctl",
+#     "__hook_cmd_stern",
+#     "__hook_cmd_kubeseal",
+#     "__hook_cmd_skaffold",
+#     "__hook_cmd_kubent",
+#     "__hook_cmd_kubecolor",
+#     "__hook_cmd_cmctl",
+#     "__hook_cmd_sparkctl",
+# ]
 style = '39 bold'
 
 [python]
-format = "[( $symbol($version))]($style)"
+format = "[($symbol($version))]($style)"
 style = "bright-black"
 
+[gcloud]
+format = '[$symbol$account(@$domain)(\($region\))]($style) '
+symbol = "G "
+detect_env_vars = ["__hook_cmd_gcloud", "__hook_cmd_gcs", "__hook_cmd_gsutil"]
