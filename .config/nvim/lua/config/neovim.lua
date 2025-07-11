@@ -30,23 +30,17 @@ vim.g.autoformat = false
 vim.opt.clipboard = "unnamedplus"
 
 -- Disabled for WSL2 (wslg)
--- vim.cmd([[
---     if has('clipboard') || exists('g:vscode')
---         set clipboard^=unnamedplus
--- 
---         if has('nvim') && exists('$WSLENV')
---             let g:clipboard = {
---             \     'name': 'xclip-wsl',
---             \     'copy': {
---             \         '+': 'xclip -i',
---             \         '*': 'xclip -i',
---             \     },
---             \     'paste': {
---             \         '+': 'xclip -o',
---             \         '*': 'xclip -o',
---             \     },
---             \    'cache_enabled': 0,
---             \ }
---         endif
---     endif
--- ]])
+if os.getenv("WSLENV") then
+	vim.g.clipboard = {
+		name = 'wsl-clipboard',
+		copy = {
+			['+'] = 'xsel -bi',
+			['*'] = 'xsel -bi',
+		},
+		paste = {
+			['+'] = function() return vim.fn.systemlist('xsel -bo | tr -d "\r"') end,
+			['*'] = function() return vim.fn.systemlist('xsel -bo | tr -d "\r"') end,
+		},
+		cache_enabled = 1,
+	}
+end
