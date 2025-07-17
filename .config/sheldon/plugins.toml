@@ -22,6 +22,10 @@ defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file 
 github = 'romkatv/zsh-defer'
 apply = ['source']
 
+[plugins.zsh-async]
+github = 'mafredri/zsh-async'
+apply = ['source']
+
 # Syntax
 # [plugins.zsh-syntax-highlighting]
 # github = 'zsh-users/zsh-syntax-highlighting'
