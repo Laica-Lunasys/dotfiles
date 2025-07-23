@@ -38,7 +38,7 @@ _check() {
     OPTIONAL=("tmux" "zsh" "vim" "nvim")
 
     for v in ${REQUIRED[@]}; do
-        if [ "$(which "$v" &> /dev/null; echo $?)" == 0 ]; then
+        if [ "$(command -v "$v" &> /dev/null; echo $?)" == 0 ]; then
             echo "$_INFO Passed: $v"
         else
             echo "$_ERROR Could not find requirements: $v"
@@ -46,7 +46,7 @@ _check() {
         fi
     done
     for v in ${OPTIONAL[@]}; do
-        if [ "$(which "$v" &> /dev/null; echo $?)" == 0 ]; then
+        if [ "$(command -v "$v" &> /dev/null; echo $?)" == 0 ]; then
             echo "$_INFO Passed: $v"
         else
             echo "$_WARN Could not find optional: $v"
