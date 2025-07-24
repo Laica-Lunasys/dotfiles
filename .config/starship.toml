@@ -139,7 +139,7 @@ style = "yellow"
 [username]
 disabled = false
 style_user = '033'
-style_root = 'black bold'
+style_root = 'red bold'
 format = '[$user]($style)'
 show_always = true
 
