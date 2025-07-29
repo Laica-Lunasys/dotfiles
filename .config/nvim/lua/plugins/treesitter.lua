@@ -20,6 +20,7 @@ return {
 				"fish",
 				"php",
 				"proto",
+				"prisma",
 				"json",
 				"yaml",
 				"css",
