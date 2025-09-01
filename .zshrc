@@ -110,9 +110,10 @@ if [ ! -z $WSLENV ]; then
 fi
 
 # fzf: Optimize completion
-[ -f ~/.fzf.zsh ] && \
-    export PATH="$PATH:$HOME/.fzf/bin" && \
+if [ -d ~/.fzf ]; then
+    export PATH="$PATH:$HOME/.fzf/bin"
     source <(~/.fzf/bin/fzf --zsh)
+fi
 
 export PATH="$PATH:$HOME/.starship/bin"
 export PATH="$PATH:$HOME/.local/bin"
