@@ -34,12 +34,12 @@ if os.getenv("WSLENV") then
 	vim.g.clipboard = {
 		name = 'wsl-clipboard',
 		copy = {
-			['+'] = 'xsel -bi',
-			['*'] = 'xsel -bi',
+			['+'] = 'xclip -i',
+			['*'] = 'xclip -i',
 		},
 		paste = {
-			['+'] = function() return vim.fn.systemlist('xsel -bo | tr -d "\r"') end,
-			['*'] = function() return vim.fn.systemlist('xsel -bo | tr -d "\r"') end,
+			['+'] = 'xclip -o',
+			['*'] = 'xclip -o',
 		},
 		cache_enabled = 1,
 	}
