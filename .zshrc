@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ## Autoload
 autoload -Uz colors && colors
 autoload -Uz vcs_info
@@ -20,31 +27,31 @@ source $HOME/.zsh/color.zsh
 # For multiline prompt support
 #-------------------------------
 # clear command for non-ncurses environment
-function clear() {
-    if (( $+commands[clear] )) && command clear 2>/dev/null; then
-        return
-    fi
-    echoti clear 2>/dev/null
-    print -n -- "\e[H\e[2J\e[3J"
-}
-
-function __run_print_next_time() {
-    if [ "${__do_not_print_next_time}" = "YES" ]; then
-        unset __do_not_print_next_time
-    else
-        print
-    fi
-}
+# function clear() {
+#     if (( $+commands[clear] )) && command clear 2>/dev/null; then
+#         return
+#     fi
+#     echoti clear 2>/dev/null
+#     print -n -- "\e[H\e[2J\e[3J"
+# }
+#
+# function __run_print_next_time() {
+#     if [ "${__do_not_print_next_time}" = "YES" ]; then
+#         unset __do_not_print_next_time
+#     else
+#         print
+#     fi
+# }
 
 # Draw newline before every prompt rendering
 # + Don't print newline at first prompt rendering
 # (function activation only)
-__do_not_print_next_time="YES"
-add-zsh-hook precmd __run_print_next_time
+# __do_not_print_next_time="YES"
+# add-zsh-hook precmd __run_print_next_time
 
 # clear console buffers
 # + Don't print newline in next prompt rendering
-alias clear="__do_not_print_next_time='YES' && clear"
+# alias clear="__do_not_print_next_time='YES' && clear"
 
 #----------------------
 # Keybind
@@ -115,10 +122,13 @@ if [ -d ~/.fzf ]; then
     source <(~/.fzf/bin/fzf --zsh)
 fi
 
-export PATH="$PATH:$HOME/.starship/bin"
+# export PATH="$PATH:$HOME/.starship/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
 # Experimental (do not enable)
 # source $HOME/.zsh/plugins/cmd-hook.zsh
 
 eval "$(sheldon source)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh && source ~/.zsh/p10k.zsh

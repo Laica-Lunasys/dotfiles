@@ -22,9 +22,9 @@ defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file 
 github = 'romkatv/zsh-defer'
 apply = ['source']
 
-[plugins.zsh-async]
-github = 'mafredri/zsh-async'
-apply = ['source']
+# [plugins.zsh-async]
+# github = 'mafredri/zsh-async'
+# apply = ['source']
 
 # Syntax
 # [plugins.zsh-syntax-highlighting]
@@ -34,14 +34,14 @@ apply = ['source']
 github = 'zdharma-continuum/fast-syntax-highlighting'
 apply = ['defer']
 
-[plugins.gitstatus]
-github = 'romkatv/gitstatus'
-apply = ['defer']
+# [plugins.gitstatus]
+# github = 'romkatv/gitstatus'
+# apply = ['defer']
 
-[plugins.gitstatus-local]
-local = "~/.zsh/plugins"
-use = ["gitstatus.zsh"]
-apply = ['defer']
+# [plugins.gitstatus-local]
+# local = "~/.zsh/plugins"
+# use = ["gitstatus.zsh"]
+# apply = ['defer']
 
 # Others
 [plugins.zsh-autosuggestions]
@@ -52,8 +52,8 @@ apply = ['defer']
 github = 'zsh-users/zsh-completions'
 apply = ['defer']
 
-# [plugins.powerlevel10k]
-# github = "romkatv/powerlevel10k"
+[plugins.powerlevel10k]
+github = "romkatv/powerlevel10k"
 
-[plugins.starship]
-inline = 'eval "$(starship init zsh)"'
+# [plugins.starship]
+# inline = 'eval "$(starship init zsh)"'
