@@ -1,32 +1,21 @@
-FROM ubuntu:latest
+FROM archlinux:latest
 
 ARG USERNAME=relias
-ENV TERM xterm-256color
-ENV LANG C.UTF-8
-ENV DEBIAN_FRONTEND nointeractive
+ENV TERM=xterm-256color
+ENV LANG=C.UTF-8
 
-RUN apt-get update -qq && \
-    apt-get install -y \
-    busybox git tmux vim zsh make gcc g++ nano curl wget sudo tzdata nmap \
-    python3 python3-pip golang \
-    software-properties-common
-
-# Install neovim
-RUN add-apt-repository ppa:neovim-ppa/stable && \
-    apt-get update -qq && \
-    apt-get install -y neovim
-
-# Clean
-RUN apt-get clean
+RUN pacman -Syy && \
+    pacman -S --noconfirm --needed \
+    busybox git tmux vim neovim zsh make gcc nano curl wget sudo tzdata
 
 RUN busybox --install && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    useradd ${USERNAME} -m -u 1000 -G sudo -s /bin/zsh && \
-    usermod -aG sudo ${USERNAME}
+    useradd ${USERNAME} -m -G wheel -s /bin/zsh && \
+    usermod -aG wheel ${USERNAME}
 
 USER ${USERNAME}
 
-COPY --chown=${USERNAME}:1000 . /home/${USERNAME}/dotfiles
+COPY --chown=${USERNAME} . /home/${USERNAME}/dotfiles
 WORKDIR /home/${USERNAME}/dotfiles
 RUN make install
 
