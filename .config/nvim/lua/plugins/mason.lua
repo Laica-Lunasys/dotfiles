@@ -10,7 +10,12 @@ return {
 				"css-lsp",
 				"dockerfile-language-server",
 				"docker-compose-language-service",
+
+				-- TypeScript
 				"eslint-lsp",
+				"biome",
+				"typescript-language-server",
+
 				"gopls",
 				"html-lsp",
 				"jq",

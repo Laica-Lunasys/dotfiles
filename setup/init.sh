@@ -43,7 +43,10 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 echo "$_TASK Executing: 'vim -c :PlugInstall'"
 vim -c ':PlugInstall' -c ':q' -c ':q'
 
-echo ""
-echo "$_TASK Installed vim packages"
+echo "$_TASK Initialize neovim"
+nvim -R --cmd 'set nomore' -c ':LazyDev lsp' -c ':q'
+
+echo "$_TASK Initialize zsh"
+zsh --login -c 'source $HOME/.zshrc'
 
 echo "$_INFO Operation success! you can now dive in to the world."
