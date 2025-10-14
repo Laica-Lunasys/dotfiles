@@ -1,0 +1,22 @@
+# Editor
+.idea/
+.vscode/
+
+# Secrets
+.env
+.secrets
+
+# macOS
+.DS_Store
+.AppleDouble
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# WSL
+*Zone.Identifier
+
