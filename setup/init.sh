@@ -44,7 +44,7 @@ echo "$_TASK Executing: 'vim -c :PlugInstall'"
 vim -c ':PlugInstall' -c ':q' -c ':q'
 
 echo "$_TASK Initialize neovim"
-nvim -R --cmd 'set nomore' -c ':LazyDev lsp' -c ':q'
+nvim -R --cmd 'set nomore' -c ':Lazy update' -c ':q'
 
 echo "$_TASK Initialize zsh"
 zsh --login -c 'source $HOME/.zshrc'
