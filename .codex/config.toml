@@ -1,7 +1,7 @@
 network_access = true
 
-[tools]
-web_search = true
+[features]
+web_search_request = true
 
 # MCP
 [mcp_servers.serena]
