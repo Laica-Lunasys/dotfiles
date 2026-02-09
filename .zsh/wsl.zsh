@@ -1,3 +1,3 @@
-if [ -e "$HOME/.local/share/wsl-support" ]; then
-    export PATH="$PATH:$HOME/.local/share/wsl-support/bin"
+if [ -e "/usr/local/windows/bin" ]; then
+    export PATH="$PATH:/usr/local/windows/bin"
 fi
