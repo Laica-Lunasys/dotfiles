@@ -20,3 +20,9 @@ Desktop.ini
 # WSL
 *Zone.Identifier
 
+# Claude
+**/.claude/settings.local.json
+
+# OpenCode
+.omo/
+
