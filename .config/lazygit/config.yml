@@ -2,3 +2,8 @@
 git:
   disableForcePushing: true
 
+gui:
+  showRandomTip: false
+  expandFocusedSidePanel: true
+  expandedSidePanelWeight: 6
+  commandLogSize: 4
