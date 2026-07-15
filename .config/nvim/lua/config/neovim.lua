@@ -31,16 +31,43 @@ vim.opt.clipboard = "unnamedplus"
 
 -- Disabled for WSL2 (wslg)
 if os.getenv("WSLENV") then
-	vim.g.clipboard = {
-		name = 'wsl-clipboard',
-		copy = {
-			['+'] = 'xclip -i',
-			['*'] = 'xclip -i',
-		},
-		paste = {
-			['+'] = 'xclip -o',
-			['*'] = 'xclip -o',
-		},
-		cache_enabled = 1,
-	}
+	if os.getenv("DISPLAY") ~= ":0" then
+		vim.g.clipboard = {
+			name = 'wsl-clipboard',
+			copy = {
+				['+'] = 'xclip -i',
+				['*'] = 'xclip -i',
+				-- ['+'] = 'xsel -bi',
+				-- ['*'] = 'xsel -bi',
+				-- ['+'] = 'clip.exe',
+				-- ['*'] = 'clip.exe',
+			},
+			paste = {
+				['+'] = 'xclip -o',
+				['*'] = 'xclip -o',
+				-- ['+'] = function() return vim.fn.systemlist('xclip -o') end,
+				-- ['*'] = function() return vim.fn.systemlist('xclip -o') end,
+				-- ['+'] = function() return vim.fn.systemlist('xsel -bo | tr -d "\r"') end,
+				-- ['*'] = function() return vim.fn.systemlist('xsel -bo | tr -d "\r"') end,
+			},
+			cache_enabled = 1,
+		}
+	else
+		vim.g.clipboard = {
+			name = 'wsl-clipboard',
+			copy = {
+				-- ['+'] = 'xclip -i',
+				-- ['*'] = 'xclip -i',
+				['+'] = 'xsel -bi',
+				['*'] = 'xsel -bi',
+				-- ['+'] = 'clip.exe',
+				-- ['*'] = 'clip.exe',
+			},
+			paste = {
+				['+'] = "wsl-paste",
+				['*'] = "wsl-paste",
+			},
+			cache_enabled = 1,
+		}
+	end
 end
