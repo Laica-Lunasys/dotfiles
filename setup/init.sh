@@ -21,12 +21,6 @@ if [ ! -e ${HOME}/.local/bin/sheldon ]; then
         | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-    echo "$_TASK Setup tpm..."
-    mkdir -p ~/.tmux/plugins/tpm
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
 if [ ! -d ${HOME}/.starship ]; then
     echo "$_TASK Setup starship..."
     mkdir -p ${HOME}/.starship/bin
